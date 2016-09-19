@@ -22,9 +22,11 @@ https://www.infoq.com/interviews/richardson-functional-java
 https://www.infoq.com/presentations/How-We-Mostly-Moved-from-Java-to-Scala
 https://www.youtube.com/watch?v=8vxTowBXJSg
 https://www.youtube.com/watch?v=PKc5IwHG68k
-https://www.youtube.com/watch?v=v-adlWyS4Ww
 https://www.youtube.com/watch?v=6vdYuy5-Yqc
 https://www.youtube.com/watch?v=mo7-VHYYSWQ
 
-Articels:
+Articles:
 https://www.infoq.com/articles/java-8-vs-scala
+http://www.codeproject.com/Articles/893211/Differences-Between-Scala-and-Java-Part
+http://www.codeproject.com/Articles/897624/Differences-Between-Scala-and-Java-Part
+
