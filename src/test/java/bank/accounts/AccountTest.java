@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class AccountTest {
 
-    Account testee;
+    private Account testee;
 
     @Before
     public void setup() {
@@ -28,12 +28,12 @@ public class AccountTest {
     public void testDeposit() {
         testee.deposit(new BigDecimal(42));
 
-        assertEquals("After Deposit, amount must be 58.00", new BigDecimal(142.00), testee.getBalance());
+        assertEquals("After Deposit, amount must be 142.00", new BigDecimal(142.00), testee.getBalance());
     }
     @Test
     public void testWithdraw() {
         testee.withdraw(new BigDecimal(42));
 
-        assertEquals("After Deposit, amount must be 58.00", new BigDecimal(58.00), testee.getBalance());
+        assertEquals("After withdraw, amount must be 58.00", new BigDecimal(58.00), testee.getBalance());
     }
 }
