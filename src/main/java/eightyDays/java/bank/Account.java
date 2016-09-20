@@ -1,6 +1,6 @@
-package bank.accounts;
+package eightyDays.java.bank;
 
-import bank.Customer;
+import eightyDays.java.bank.partner.Partner;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -9,13 +9,13 @@ import java.util.Date;
 import java.util.List;
 
 public abstract class Account {
-    private Customer owner = null;
+    private Partner owner = null;
     private Currency currency = null;
     private double interest = 0;
     private BigDecimal balance = new BigDecimal(0);
     private List<Statement> statements = new ArrayList<>();
 
-    Account(Customer owner, Currency currency, double interest, BigDecimal balance) {
+    Account(Partner owner, Currency currency, double interest, BigDecimal balance) {
         this.owner = owner;
         this.currency = currency;
         this.interest = interest;
@@ -32,7 +32,7 @@ public abstract class Account {
         balance = balance.subtract(amount);
     }
 
-    public Customer getOwner() {
+    public Partner getOwner() {
         return owner;
     }
 
