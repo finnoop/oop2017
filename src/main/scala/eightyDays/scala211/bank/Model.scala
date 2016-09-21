@@ -3,13 +3,7 @@ package eightyDays.scala211.bank
 import eightyDays.scala211.bank.partner.{Identification, Partner}
 
 package partner {
-
-  import java.util.UUID
-
-  case class Identification(number:String)
-  case object Identification {
-    def apply(): Identification = new Identification(UUID.randomUUID.toString)
-  }
+  case class Identification(number:String = java.util.UUID.randomUUID.toString)
   abstract class Partner(val name:String)
   case class Person(firstName:String, override val name: String) extends Partner(name)
 }
@@ -30,5 +24,4 @@ case class Bank(name:String, partners: Map[Identification, Partner] = Map[Identi
         val result = Identification()
         (result, copy(partners = partners + (result -> pPartner)))
     }
-
 }

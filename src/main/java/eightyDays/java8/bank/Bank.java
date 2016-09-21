@@ -29,7 +29,11 @@ public class Bank {
     public Identification addPartner(final Partner pPartner) {
         Identification result;
         if (partners.containsValue(pPartner)) {
-            result = partners.entrySet().stream().filter(keyValue -> pPartner.equals(keyValue.getValue())).findFirst().get().getKey();
+            result = partners.entrySet().stream()
+                    .filter(keyValue -> pPartner.equals(keyValue.getValue()))
+                    .findFirst()
+                    .get()
+                    .getKey();
         } else {
             result = Identification.newIdentification();
             partners.put(result, pPartner);
