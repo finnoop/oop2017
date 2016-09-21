@@ -1,4 +1,4 @@
-package eightyDays.java.bank;
+package eightyDays.java8.bank;
 
 import java.math.BigDecimal;
 import java.util.Date;

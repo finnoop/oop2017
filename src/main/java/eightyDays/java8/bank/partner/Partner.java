@@ -1,4 +1,4 @@
-package eightyDays.java.bank.partner;
+package eightyDays.java8.bank.partner;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,7 +28,7 @@ abstract public class Partner {
         contatcs.add(pContact);
     }
 
-    public void removeContatc(Communication pContact) {
+    public void removeContact(Communication pContact) {
         contatcs.remove(pContact);
     }
 

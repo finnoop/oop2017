@@ -1,4 +1,4 @@
-package eightyDays.java.bank.partner;
+package eightyDays.java8.bank.partner;
 
 public class Phone extends Communication {
     private String number;

@@ -1,4 +1,4 @@
-package eightyDays.java.bank.partner;
+package eightyDays.java8.bank.partner;
 
 /**
  * Created by jrb on 20/09/16.

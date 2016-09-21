@@ -1,12 +1,13 @@
-package eightyDays.java.bank;
+package eightyDays.java8.bank;
 
-import eightyDays.java.bank.partner.Identification;
-import eightyDays.java.bank.partner.Partner;
+import eightyDays.java8.bank.partner.Identification;
+import eightyDays.java8.bank.partner.Partner;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Bank {
     private String name;
@@ -25,9 +26,14 @@ public class Bank {
         return new HashSet(partners.values());
     }
 
-    public Identification addPartner(Partner pPartners) {
-        Identification result = Identification.newIdentification();
-        partners.put(result, pPartners);
+    public Identification addPartner(final Partner pPartner) {
+        Identification result;
+        if (partners.containsValue(pPartner)) {
+            result = partners.entrySet().stream().filter(keyValue -> pPartner.equals(keyValue.getValue())).findFirst().get().getKey();
+        } else {
+            result = Identification.newIdentification();
+            partners.put(result, pPartner);
+        }
         return result;
     }
 
@@ -50,5 +56,12 @@ public class Bank {
 
     public Partner getPartner(Identification pIdentification) {
         return partners.get(pIdentification);
+    }
+
+    public Set<Partner> searchPartners(String pName) {
+        return partners.entrySet().stream()
+                .filter(entry -> entry.getValue().getName().equals(pName))
+                .map(entry -> entry.getValue())
+                .collect(Collectors.toSet());
     }
 }

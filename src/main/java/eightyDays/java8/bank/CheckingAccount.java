@@ -1,6 +1,6 @@
-package eightyDays.java.bank;
+package eightyDays.java8.bank;
 
-import eightyDays.java.bank.partner.Partner;
+import eightyDays.java8.bank.partner.Partner;
 
 import java.math.BigDecimal;
 import java.util.Currency;
