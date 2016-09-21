@@ -44,7 +44,7 @@ public class SimpleBank extends TestCase {
         assertEquals("Simple bank", out.getName());
         assertEquals(0, out.getPartners().size());
 
-        Set<Partner> result = out.searchPartner("Muster");
+        Set<Partner> result = out.searchPartners("Muster");
         assertNotEquals(null, result);
         assertEquals(0, result.size());
     }
@@ -54,7 +54,7 @@ public class SimpleBank extends TestCase {
         Bank out = bigBank();
         assertTrue(out.getPartners().size() > 10);
 
-        Set<Partner> result = out.searchPartner("Muster");
+        Set<Partner> result = out.searchPartners("Muster");
 
         assertNotEquals(null, result);
         assertEquals(0, result.size());

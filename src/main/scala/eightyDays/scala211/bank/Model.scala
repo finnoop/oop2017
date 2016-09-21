@@ -19,7 +19,7 @@ case class Bank(name:String, partners: Map[Identification, Partner] = Map[Identi
   def searchPartners(name: String) =
     partners
       .filter(_._2.name == name)
-      .map(_._2)
+      .values
       .toSet
 
   def addPartner(pPartner: Partner) =
