@@ -23,7 +23,7 @@ public class Bank {
     }
 
     public Set<Partner> getPartners() {
-        return new HashSet(partners.values());
+        return new HashSet<>(partners.values());
     }
 
     public Identification addPartner(final Partner pPartner) {
@@ -62,10 +62,10 @@ public class Bank {
         return partners.get(pIdentification);
     }
 
-    public Set<Partner> searchPartners(String pName) {
+    public Set<Partner> findByName(String pName) {
         return partners.entrySet().stream()
                 .filter(entry -> entry.getValue().getName().equals(pName))
-                .map(entry -> entry.getValue())
+                .map(Map.Entry::getValue)
                 .collect(Collectors.toSet());
     }
 }

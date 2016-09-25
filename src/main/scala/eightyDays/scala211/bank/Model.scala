@@ -1,6 +1,6 @@
 package eightyDays.scala211.bank
 
-import eightyDays.scala211.bank.partner.{Identification, Partner}
+import eightyDays.scala211.bank.partner.{Identification, Partner, Person}
 
 package partner {
   case class Identification(number:String = java.util.UUID.randomUUID.toString)
@@ -10,11 +10,11 @@ package partner {
 
 case class Bank(name:String, partners: Map[Identification, Partner] = Map[Identification, Partner]()) {
 
-  def searchPartners(name: String) =
+  def find(f: Partner => Boolean) =
     partners
-      .filter(_._2.name == name)
-      .values
-      .toSet
+    .filter(p => f(p._2))
+    .values
+    .toSet
 
   def addPartner(pPartner: Partner) =
     partners
