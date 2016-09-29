@@ -16,7 +16,7 @@ public class Benchmarks {
 
         private Bank bigBank() {
             Bank bigBank = new Bank("Simple bank");
-            testdata.personsJ(20_000).stream().forEach(person -> bigBank.addPartner(person));
+            testdata.personsJ(20_000).forEach(bigBank::addPartner);
             return bigBank;
         }
     }
@@ -24,6 +24,6 @@ public class Benchmarks {
     @Benchmark
     public void measureSearch(Provider provider) {
         Bank out = provider.bigBank;
-        out.searchPartners("Muster");
+        out.findByName("Muster");
     }
 }

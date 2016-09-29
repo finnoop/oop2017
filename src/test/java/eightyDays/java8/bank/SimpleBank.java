@@ -5,15 +5,13 @@ import eightyDays.java8.bank.partner.Address;
 import eightyDays.java8.bank.partner.Identification;
 import eightyDays.java8.bank.partner.Partner;
 import eightyDays.java8.bank.partner.Person;
-import junit.framework.TestCase;
 import org.junit.Test;
-import org.openjdk.jmh.annotations.Benchmark;
 
 import java.util.Set;
 
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
-public class SimpleBank extends TestCase {
+public class SimpleBank {
     @Test
     public void testFoundBank() {
         Bank out = new Bank("Simple bank");
@@ -44,7 +42,7 @@ public class SimpleBank extends TestCase {
         assertEquals("Simple bank", out.getName());
         assertEquals(0, out.getPartners().size());
 
-        Set<Partner> result = out.searchPartners("Muster");
+        Set<Partner> result = out.findByName("Muster");
         assertNotEquals(null, result);
         assertEquals(0, result.size());
     }
@@ -54,7 +52,7 @@ public class SimpleBank extends TestCase {
         Bank out = bigBank();
         assertTrue(out.getPartners().size() > 10);
 
-        Set<Partner> result = out.searchPartners("Muster");
+        Set<Partner> result = out.findByName("Muster");
 
         assertNotEquals(null, result);
         assertEquals(0, result.size());
@@ -63,7 +61,7 @@ public class SimpleBank extends TestCase {
     private Bank bigBank() {
         Bank bigBank = new Bank("Simple bank");
         Testdata testdata =new Testdata();
-        testdata.personsJ(11).stream().forEach(person -> bigBank.addPartner(person));
+        testdata.personsJ(11).forEach(bigBank::addPartner);
         return bigBank;
     }
 }
