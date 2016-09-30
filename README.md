@@ -68,3 +68,10 @@ Images
   * (Self types)
 - Implicit conversion
   * Kann zu magic führen
+- import
+  * relativ
+  * renaming
+  * multiple
+  * places im code
+  
+

@@ -26,6 +26,9 @@ package partner {
 
 case class Bank(name: String, partners: Map[Identification, Partner] = Map[Identification, Partner]()) {
 
+  // unnoetig, da partner schon einen default value hat
+  def this(name:String) = this(name,Map())
+
   def find(predicate: Partner => Boolean): Option[Partner] = partners
     .find(p => predicate(p._2))
     .map(_._2)
