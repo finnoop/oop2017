@@ -1,7 +1,6 @@
 package eightyDays
 
 import com.github.tototoshi.csv.{CSVReader, DefaultCSVFormat}
-import eightyDays._
 
 import scala.collection.JavaConversions._
 import scala.util.Random
@@ -9,15 +8,18 @@ import scalax.file.{Path, PathMatcher}
 
 class Testdata {
   val files = Path
-    .fromString("./src/main/resources")
+    .fromString(getClass.getResource("/export").getPath)
     .children(PathMatcher.RegexNameMatcher("export_.*.csv"))
     .toList
+
   implicit object CSVReaderSemicolon extends DefaultCSVFormat {
     override val delimiter = ';'
   }
+
   val data = files.flatMap { file =>
     CSVReader.open(file.fileOption.get).allWithHeaders()
   }
+
   def mapper(field: String): List[String] =
     data.map(_(field)).distinct.filter(_.length > 0).sorted
 

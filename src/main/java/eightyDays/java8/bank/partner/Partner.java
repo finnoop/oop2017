@@ -2,6 +2,7 @@ package eightyDays.java8.bank.partner;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Predicate;
 
 abstract public class Partner {
     private String name;
@@ -61,5 +62,9 @@ abstract public class Partner {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (contatcs != null ? contatcs.hashCode() : 0);
         return result;
+    }
+
+    public static Predicate<Partner> byName(String name) {
+        return partner -> partner.getName().equals(name);
     }
 }

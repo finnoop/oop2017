@@ -7,12 +7,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Bank {
     private String name;
     private Map<Identification, Partner> partners = new HashMap<>();
-    private Set<Account> accounts = new HashSet<>();
 
     public Bank(String pName) {
         name = pName;
@@ -24,6 +24,13 @@ public class Bank {
 
     public Set<Partner> getPartners() {
         return new HashSet<>(partners.values());
+    }
+
+    public Set<Partner> find(Predicate<Partner> predicate) {
+        return partners.entrySet().stream()
+                .map(Map.Entry::getValue)
+                .filter( predicate )
+                .collect(Collectors.toSet());
     }
 
     public Identification addPartner(final Partner pPartner) {
@@ -39,33 +46,5 @@ public class Bank {
             partners.put(result, pPartner);
         }
         return result;
-    }
-
-    public void removePartner(Partner pPartners) {
-        // tbd remove account of this partner
-        partners.remove(pPartners);
-    }
-
-    public Set<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void addAccount(Account pAccount) {
-        accounts.add(pAccount);
-    }
-
-    public void removeAccount(Account pAccount) {
-        accounts.remove(pAccount);
-    }
-
-    public Partner getPartner(Identification pIdentification) {
-        return partners.get(pIdentification);
-    }
-
-    public Set<Partner> findByName(String pName) {
-        return partners.entrySet().stream()
-                .filter(entry -> entry.getValue().getName().equals(pName))
-                .map(Map.Entry::getValue)
-                .collect(Collectors.toSet());
     }
 }

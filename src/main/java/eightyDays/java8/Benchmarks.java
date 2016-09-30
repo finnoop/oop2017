@@ -2,6 +2,7 @@ package eightyDays.java8;
 
 import eightyDays.Testdata;
 import eightyDays.java8.bank.Bank;
+import eightyDays.java8.bank.partner.Partner;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
@@ -24,6 +25,6 @@ public class Benchmarks {
     @Benchmark
     public void measureSearch(Provider provider) {
         Bank out = provider.bigBank;
-        out.findByName("Muster");
+        out.find(Partner.byName("Muster"));
     }
 }
