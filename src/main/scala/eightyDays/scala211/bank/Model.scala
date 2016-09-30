@@ -8,17 +8,33 @@ package partner {
 
   abstract class Partner(val name: String)
 
+  object Partner {
+    def byName(name: String): Partner => Boolean = partner => partner.name == name
+  }
+
   case class Person(firstName: String, override val name: String) extends Partner(name)
 
+  object Person {
+    def byFirstname(firstName: String): Partner => Boolean = {
+      //case person: Person => person.firstName == firstName
+      // alternative
+      case Person(`firstName`, _) => true
+      case _ => false
+    }
+  }
 }
 
 case class Bank(name: String, partners: Map[Identification, Partner] = Map[Identification, Partner]()) {
 
-  def find(f: Partner => Boolean) =
+  def find(predicate: Partner => Boolean): Option[Partner] = partners
+    .find(p => predicate(p._2))
+    .map(_._2)
+
+  def filter(predicate: Partner => Boolean): Set[Partner] =
     partners
-    .filter(p => f(p._2))
-    .values
-    .toSet
+      .filter(p => predicate(p._2))
+      .values
+      .toSet
 
   def addPartner(pPartner: Partner): (Identification, Bank) =
     partners

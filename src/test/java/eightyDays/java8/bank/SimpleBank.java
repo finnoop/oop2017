@@ -7,11 +7,19 @@ import eightyDays.java8.bank.partner.Partner;
 import eightyDays.java8.bank.partner.Person;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
 
 public class SimpleBank {
+
+    @Test
+    public void testListOfPartners() {
+        List<Partner> partners = new ArrayList<Partner>();
+    }
+
     @Test
     public void testFoundBank() {
         Bank out = new Bank("Simple bank");

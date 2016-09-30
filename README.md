@@ -28,31 +28,40 @@ https://www.youtube.com/watch?v=mo7-VHYYSWQ
 https://www.infoq.com/articles/java-8-vs-scala
 http://www.codeproject.com/Articles/893211/Differences-Between-Scala-and-Java-Part
 http://www.codeproject.com/Articles/897624/Differences-Between-Scala-and-Java-Part
+https://www.google.ch/search?q=hashcode+mutable+java&oq=hashcode+mutable+java&aqs=chrome..69i57.3575j0j4&sourceid=chrome&ie=UTF-8
+
+Images
+123rf.com
 
 # To Discuss
 - Wo sind die ; ?
 - Wo ist der . ?
+- Wo ist return (Return optional aber möglich)
+- Wo ist der Type (Type interference)?
 - String interpolation
-- Co-, conter variant bei Lists, etc
-- ? vs if
-- Side effects
-- For comprehension
+- (? vs if)
+- Side effects (immutability)
+  * Skalierung mit Anzahl cores vs shared mutable state
+  * Mutable hashCode Problem
+- Besser lesbar, da es viel dichter ist. Keine/wenig Zeremonie im Vergleich zu Java
+  * For comprehension vs map/flatMap (readability)
 - Named parameter
-- default parameter
+  * !! Entfernen eines Feldes bei einer Klasse: DRY
+  * default parameter
 - Umsetzung von Design Patterns (z,B: Singleton, Command, …)
-  - Builder Pattern Java vs Scala
-  - Command Pattern
-- Curing
-- Tupels?
+  * Builder Pattern Java vs Scala
+  * Command Pattern
+  * Filter auf Felder einer Sub-Klasse?
+- Tupels
 - Map ->
-- Symbolic names in scala like -> \:
+  * Symbolic names in scala like -> \:
+  * == wird übersetzt als equals, eq ist wie == in Java
+  * Person + Person liefert eine Partnerschaft
 - {} kann fast überall anstelle von was anderem stehen z.B. Bei getOrElese bei Option
 - Immutability!!! Z.B: wenn wir einen Schreibfehler im Namen korrigieren
-- !! Entfernen eines Feldes bei einer Klasse: DRY
-- Return optional aber möglich
-- Type interference
+  * GC -> Performance, Memory,...
 - Pattern Matching
-- Self types
+- Traits
+  * (Self types)
 - Implicit conversion
-- Skalierung mit Anzahl cores vs shared mutable state
-- Besser lesbar, da es viel dichter ist. Keine/wenig Zeremonie im Vergleich zu Java
+  * Kann zu magic führen

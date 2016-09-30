@@ -19,6 +19,6 @@ class Benchmarks {
   def prepare(): Unit = Benchmarks.bigBank
 
   @Benchmark def measureSearch = {
-    Benchmarks.bigBank.find(_.name == "Muster")
+    Benchmarks.bigBank.filter(_.name == "Muster")
   }
 }
