@@ -65,8 +65,6 @@ package account {
 
   package fee {
 
-    trait Fixed
-
     trait BalanceBased
 
     trait PerBooking
