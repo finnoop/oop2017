@@ -43,15 +43,9 @@ package account {
   abstract class Account(val bookings: Seq[Booking], makeNew: (Seq[Booking] => Account)) {
     implicit def booking2Amount(booking: Booking): Amount = booking.value
 
-    implicit def seqOfIntToSeqBigDecimal(values: Seq[Int]): Seq[BigDecimal] = values.map(BigDecimal(_))
-
     def balance: Amount = bookings.foldLeft(BigDecimal.valueOf(0))((balance, booking) => balance + booking)
 
     def post(value: Amount, valuta: time.LocalDateTime = time.LocalDateTime.now()) = makeNew(Booking(value, valuta) +: bookings)
-
-    def posts(values: Seq[Amount], valuta: time.LocalDateTime = time.LocalDateTime.now()): Account = values.foldLeft(this) {
-      (account, value) => account.post(value, valuta)
-    }
   }
 
 

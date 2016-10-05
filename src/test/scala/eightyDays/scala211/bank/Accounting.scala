@@ -20,13 +20,13 @@ class Accounting extends WordSpec {
       val (mortgage, _) = bank.addAccount(idFogg, account.FixedRateMortgage())
       val mortgageWithOneBooking = mortgage.post(10.5)
       println(mortgageWithOneBooking)
-      println(mortgageWithOneBooking.posts(Seq(1, 2)).balance)
+      println(mortgageWithOneBooking.post(3).balance)
     }
     "add one Saving account for Fogg" in withPartner(Person("Phileas", "Fogg")) { (idFogg, bank) =>
       val (mortgage, _) = bank.addAccount(idFogg, account.Saving(300)())
-      val mortgageWithOneBooking = mortgage.post(200)
+      val mortgageWithOneBooking = mortgage.post(400)
       println(mortgageWithOneBooking)
-      println(mortgageWithOneBooking.posts(Seq(200, -301)).balance)
+      println(mortgageWithOneBooking.post(-301).balance)
     }
 
   }
