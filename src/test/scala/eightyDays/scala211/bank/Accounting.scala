@@ -26,7 +26,7 @@ class Accounting extends WordSpec {
       val (mortgage, _) = bank.addAccount(idFogg, account.Saving(300)())
       val mortgageWithOneBooking = mortgage.post(200)
       println(mortgageWithOneBooking)
-      println(mortgageWithOneBooking.posts(Seq(200, -299)).balance)
+      println(mortgageWithOneBooking.posts(Seq(200, -301)).balance)
     }
 
   }

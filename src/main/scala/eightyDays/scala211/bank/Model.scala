@@ -101,7 +101,7 @@ package account {
       def timeframeInMonths: Int
       override def post(value: Amount, valuta: java.time.LocalDateTime): Account = {
         println(value,limit)
-        if (-value < limit) super.post(value, valuta) else throw new RuntimeException("Withdraw within timeframe not allowed")
+        if (value >= -limit) super.post(value, valuta) else throw new RuntimeException("Withdraw within timeframe not allowed")
       }
     }
 
