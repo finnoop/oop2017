@@ -88,22 +88,22 @@ package account {
   }
 
   package withdrawal {
+
     trait NoLimit
 
     trait Limited extends Account {
       def limit: Amount
+
       def timeframeInMonths: Int
-      override def post(value: Amount, valuta: java.time.LocalDateTime): Account = {
-        println(value,limit)
-        if (value >= -limit) super.post(value, valuta) else throw new RuntimeException("Withdraw within timeframe not allowed")
-      }
+
+      override def post(value: Amount, valuta: java.time.LocalDateTime): Account = if (value >= -limit) super.post(value, valuta) else throw new RuntimeException("Withdraw within timeframe not allowed")
+
     }
 
     trait NoWithdraw extends Account {
-      override def post(value: Amount, valuta: java.time.LocalDateTime): Account = {
-        if (value > 0.0) super.post(value, valuta) else throw new RuntimeException("Withdraw not allowed")
-      }
+      override def post(value: Amount, valuta: java.time.LocalDateTime): Account = if (value > 0.0) super.post(value, valuta) else throw new RuntimeException("Withdraw not allowed")
     }
+
   }
 
 }
