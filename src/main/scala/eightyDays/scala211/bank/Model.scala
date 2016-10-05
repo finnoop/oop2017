@@ -69,8 +69,6 @@ package account {
 
     trait BalanceBased
 
-    trait WithoutAny
-
     trait PerBooking
 
   }
