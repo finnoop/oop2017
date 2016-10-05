@@ -75,7 +75,7 @@ package account {
 
   }
 
-  package overdrawnLimits {
+  package overdrawn {
 
     trait NoOverdraw
 
@@ -83,13 +83,9 @@ package account {
       val limit: Amount
     }
 
-    trait Unlimitted
-
   }
 
   package withdrawal {
-
-    trait NoLimit
 
     trait Limited extends Account {
       def limit: Amount
