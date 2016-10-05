@@ -37,6 +37,10 @@ Images
 123rf.com
 
 # To Discuss
+- def?
+- name:Type
+- Unit?
+- public?
 - Wo sind die ; ?
 - Wo ist der . ?
 - Wo ist return (Return optional aber möglich)
