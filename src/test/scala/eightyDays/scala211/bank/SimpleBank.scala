@@ -19,13 +19,13 @@ class SimpleBank extends WordSpec {
     }
     "added one person" should {
       "have one person" in {
-        val (_, bank) = Bank("Simple bank").addPartner(Person("Phileas", "Fogg"))
+        val (_, bank) = Bank("Simple bank").addPartner(phileasFogg)
         assert(bank.partners.size == 1)
       }
-      "find this person by name" in withPartner(Person("Phileas", "Fogg")) { bank =>
+      "find this person by name" in withPartner(phileasFogg) { bank =>
         assert(bank.filter(_.name == "Fogg").size == 1)
       }
-      "find this person by its first name" in withPartner(Person("Phileas", "Fogg")) { bank =>
+      "find this person by its first name" in withPartner(phileasFogg) { bank =>
         assert(bank.filter {
           case Person(firstName, _) => firstName == "Phileas"
           case _ => false
@@ -38,10 +38,10 @@ class SimpleBank extends WordSpec {
       }
     }
     "added two persons" should {
-      "have two person" in withPartners(Person("Phileas", "Fogg"), Person("Jean", "Passepartout")) { bank =>
+      "have two person" in withPartners(phileasFogg, jeanPassepartout) { bank =>
         assert(bank.partners.size == 2)
       }
-      "find these person by name" in withPartners(Person("Phileas", "Fogg"), Person("Jean", "Passepartout")) { bank =>
+      "find these person by name" in withPartners(phileasFogg, jeanPassepartout) { bank =>
         assert(
           bank
             .filter(p => p.name == "Fogg" || p.name == "Passepartout")

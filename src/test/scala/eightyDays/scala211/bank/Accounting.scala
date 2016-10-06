@@ -16,18 +16,24 @@ class Accounting extends WordSpec {
   })
 
   "A bank" when {
-    "add one FixedRateMortgage account for Fogg" in withPartner(Person("Phileas", "Fogg")) { (idFogg, bank) =>
+    "add one FixedRateMortgage account for Fogg" in withPartner(phileasFogg) { (idFogg, bank) =>
       val (mortgage, _) = bank.addAccount(idFogg, account.FixedRateMortgage())
       val mortgageWithOneBooking = mortgage.post(10.5)
       println(mortgageWithOneBooking)
       println(mortgageWithOneBooking.post(3).balance)
     }
-    "add one Saving account for Fogg" in withPartner(Person("Phileas", "Fogg")) { (idFogg, bank) =>
+    "add one Saving account for Fogg" in withPartner(phileasFogg) { (idFogg, bank) =>
       val (mortgage, _) = bank.addAccount(idFogg, account.Saving(300)())
       val mortgageWithOneBooking = mortgage.post(400)
       println(mortgageWithOneBooking)
-      println(mortgageWithOneBooking.post(-301).balance)
+      println(mortgageWithOneBooking.post(-299).balance)
     }
+    "overdraw a saving account throws an exception" in withPartner(jeanPassepartout) { (idPasspartout, bank) =>
+      val (mortgage, _) = bank.addAccount(idPasspartout, account.Saving(10)())
+      val mortgageWithOneBooking = mortgage.post(50)
 
+      val thrown = intercept[RuntimeException]{mortgageWithOneBooking.post(-12)}
+      assert(thrown.getMessage === "Withdraw within timeframe not allowed")
+    }
   }
 }
