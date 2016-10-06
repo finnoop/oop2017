@@ -1,3 +1,7 @@
+# Next
+- Karte für Präsentation
+- Scala-Code anschauen, hinterfragen und anpassen
+
 # TBD
 - Java code gleich schreiben, wie scala
 
@@ -37,22 +41,19 @@ Images
 123rf.com
 
 # To Discuss
-- package objects?
-- def?
+- package objects
+- def
 - name:Type
-- Unit?
-- public?
-- Wo sind die ; ?
-- Wo ist der . ?
+- Unit
+- public
+- Wo sind die ;
+- Wo ist der .
 - Wo ist return (Return optional aber möglich)
-- Wo ist der Type (Type interference)?
-- String interpolation
+- Wo ist der Type (Type interference)
 - (? vs if)
 - Side effects (immutability)
   * Skalierung mit Anzahl cores vs shared mutable state
-  * Mutable hashCode Problem
-- Besser lesbar, da es viel dichter ist. Keine/wenig Zeremonie im Vergleich zu Java
-  * For comprehension vs map/flatMap (readability)
+  * (Mutable hashCode Problem)
 - Named parameter
   * !! Entfernen eines Feldes bei einer Klasse: DRY
   * default parameter
@@ -64,19 +65,26 @@ Images
 - Map ->
   * Symbolic names in scala like -> \:
   * == wird übersetzt als equals, eq ist wie == in Java
-  * Person + Person liefert eine Partnerschaft
+  * PersonenGruppe + Person mit implizierter Konvertierung
+- Implicit conversion
+  * Kann zu magic führen
 - {} kann fast überall anstelle von was anderem stehen z.B. Bei getOrElese bei Option
-- Immutability!!! Z.B: wenn wir einen Schreibfehler im Namen korrigieren
-  * GC -> Performance, Memory,...
 - Pattern Matching
 - Traits
   * (Self types)
-- Implicit conversion
-  * Kann zu magic führen
+- Immutability!!! Z.B: wenn wir einen Schreibfehler im Namen korrigieren
+  * GC -> Performance, Memory,...
 - import
   * relativ
-  * renaming
+  * renaming -> Namens-Clash mit Java-Klassen
   * multiple
   * places im code
+  
+- String interpolation -> toString
+- Besser lesbar, da es viel dichter ist. Keine/wenig Zeremonie im Vergleich zu Java
+  * For comprehension vs map/flatMap (readability)
+  * Balance zwischen Lesbarkeit und Sprach-Möglichkeiten und Kompaktheit finden
+
+
   
 

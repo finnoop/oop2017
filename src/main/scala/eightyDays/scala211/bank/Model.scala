@@ -27,7 +27,7 @@ package partner {
 }
 
 package object account {
-  type Amount = scala.math.BigDecimal
+  type Amount = BigDecimal
 }
 
 
@@ -106,6 +106,7 @@ case class Bank(name: String, partners: Map[Identification, Partner] = Map[Ident
   // unnoetig, da partner schon einen default value hat
   def this(name: String) = this(name, Map())
 
+  // Strategy-Pattern?
   def find(predicate: Partner => Boolean): Option[Partner] = partners
     .find(p => predicate(p._2))
     .map(_._2)
