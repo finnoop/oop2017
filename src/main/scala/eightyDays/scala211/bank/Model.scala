@@ -1,11 +1,9 @@
 package eightyDays.scala211.bank
 
-import eightyDays.scala211.bank.account.{Account, FixedRateMortgage}
-import eightyDays.scala211.bank.partner.{Identification, Partner, Person}
+import eightyDays.scala211.bank.account.Account
+import eightyDays.scala211.bank.partner.{Identification, Partner}
 
 package partner {
-
-  import eightyDays.scala211.bank.account.FixedRateMortgage
 
   case class Identification(number: String = java.util.UUID.randomUUID.toString)
 
@@ -28,15 +26,17 @@ package partner {
 
 }
 
+package object account {
+  type Amount = scala.math.BigDecimal
+}
+
 
 package account {
-
-  import scala.{BigDecimal => Amount}
-  import java._
+  import java.time.LocalDateTime
 
   import eightyDays.scala211.bank.account.withdrawal.{Limited, NoWithdraw}
 
-  case class Booking(value: Amount, valuta: time.LocalDateTime)
+  case class Booking(value: Amount, valuta: java.time.LocalDateTime)
 
   case class Portfolio(accounts: Set[Account])
 
@@ -45,7 +45,7 @@ package account {
 
     def balance: Amount = bookings.foldLeft(BigDecimal.valueOf(0))((balance, booking) => balance + booking)
 
-    def post(value: Amount, valuta: time.LocalDateTime = time.LocalDateTime.now()) = makeNew(Booking(value, valuta) +: bookings)
+    def post(value: Amount, valuta: LocalDateTime = LocalDateTime.now()) = makeNew(Booking(value, valuta) +: bookings)
   }
 
 
