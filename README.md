@@ -35,6 +35,7 @@ https://www.youtube.com/watch?v=mo7-VHYYSWQ
 https://www.infoq.com/articles/java-8-vs-scala
 http://www.codeproject.com/Articles/893211/Differences-Between-Scala-and-Java-Part
 http://www.codeproject.com/Articles/897624/Differences-Between-Scala-and-Java-Part
+https://dzone.com/articles/scala-vs-java-another-view?utm_source=Top%205&utm_medium=email&utm_campaign=top5%202016-10-07
 https://www.google.ch/search?q=hashcode+mutable+java&oq=hashcode+mutable+java&aqs=chrome..69i57.3575j0j4&sourceid=chrome&ie=UTF-8
 
 Images
