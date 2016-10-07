@@ -4,6 +4,10 @@
 
 # TBD
 - Java code gleich schreiben, wie scala
+- Scala ausprobieren
+  * abstract override
+  * mehrfach vererbung mit zweimal von abstract class erben im trait
+  * Trait ruft nicht super, sondern eine andere Method direkt auf (z.B. depo/withdraw mit dem Betrag positiv)
 
 # Sample code
 
