@@ -5,10 +5,10 @@ import org.scalatest.WordSpec
 
 class SimpleBank extends WordSpec {
 
-  def withPartner(partner: Partner)(test: Bank => Unit) = test(Bank("Test").addPartner(partner)._2)
+  def withPartner(partner: Partner)(test: Bank => Unit) = test(Bank("Test").add(partner)._2)
 
   def withPartners(partners: Partner*)(test: Bank => Unit) = test(partners.foldLeft(Bank("Test bank")) {
-    (bank, person) => bank.addPartner(person)._2
+    (bank, person) => bank.add(person)._2
   })
 
   "A bank" when {
@@ -19,22 +19,22 @@ class SimpleBank extends WordSpec {
     }
     "added one person" should {
       "have one person" in {
-        val (_, bank) = Bank("Simple bank").addPartner(phileasFogg)
+        val (_, bank) = Bank("Simple bank").add(phileasFogg)
         assert(bank.partners.size == 1)
       }
       "find this person by name" in withPartner(phileasFogg) { bank =>
-        assert(bank.filter(_.name == "Fogg").size == 1)
+        assert(bank.filterPartners(_.name == "Fogg").size == 1)
       }
       "find this person by its first name" in withPartner(phileasFogg) { bank =>
-        assert(bank.filter {
+        assert(bank.filterPartners {
           case Person(firstName, _) => firstName == "Phileas"
           case _ => false
         }.size == 1)
 
         import Person._
         import Partner._
-        assert((bank filter byFirstname("Phileas") size) == 1)
-        assert((bank filter byName("Fogg") size) == 1)
+        assert((bank filterPartners byFirstname("Phileas") size) == 1)
+        assert((bank filterPartners byName("Fogg") size) == 1)
       }
     }
     "added two persons" should {
@@ -44,7 +44,7 @@ class SimpleBank extends WordSpec {
       "find these person by name" in withPartners(phileasFogg, jeanPassepartout) { bank =>
         assert(
           bank
-            .filter(p => p.name == "Fogg" || p.name == "Passepartout")
+            .filterPartners(p => p.name == "Fogg" || p.name == "Passepartout")
             .size == 2)
       }
     }

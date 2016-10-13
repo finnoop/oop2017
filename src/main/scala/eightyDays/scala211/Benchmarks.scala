@@ -8,7 +8,7 @@ object Benchmarks {
   val testdata = new Testdata
   val bigBank = testdata.personsS(20000).foldLeft(Bank("Simple bank")) {
     (bank, person) =>
-      bank.addPartner(person)._2
+      bank.add(person)._2
   }
 }
 
@@ -19,6 +19,6 @@ class Benchmarks {
   def prepare(): Unit = Benchmarks.bigBank
 
   @Benchmark def measureSearch = {
-    Benchmarks.bigBank.filter(_.name == "Muster")
+    Benchmarks.bigBank.filterPartners(_.name == "Muster")
   }
 }
