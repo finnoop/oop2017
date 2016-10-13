@@ -50,11 +50,13 @@ package account {
   abstract class Account(val owner:Partner, val bookings: Seq[Booking], makeNew: ((Partner, Seq[Booking]) => Account)) {
     implicit def booking2Amount(booking: Booking): Amount = booking.value
 
-    val number = Identification
+    val number = Identification()
 
     def balance: Amount = bookings.foldLeft(BigDecimal.valueOf(0))((balance, booking) => balance + booking)
 
     def post(value: Amount, valuta: LocalDateTime = LocalDateTime.now()) = makeNew(owner, Booking(value, valuta) +: bookings)
+
+    override def toString: String = s"${getClass.getSimpleName} number:${number.number} balance:$balance"
   }
 
 

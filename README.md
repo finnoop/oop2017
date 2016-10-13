@@ -55,6 +55,7 @@ Images
 - Wo ist der .
 - Wo ist return (Return optional aber möglich)
 - Wo ist der Type (Type interference)
+- symbolische methoden
 - (? vs if)
 - Side effects (immutability)
   * Skalierung mit Anzahl cores vs shared mutable state
@@ -83,6 +84,7 @@ Images
   * relativ
   * renaming -> Namens-Clash mit Java-Klassen
   * multiple
+  
   * places im code
   
 - String interpolation -> toString
