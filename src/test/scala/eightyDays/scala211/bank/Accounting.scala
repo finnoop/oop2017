@@ -30,15 +30,15 @@ class Accounting extends WordSpec {
       assert(101 === saving.post(400).post(-299).balance)
     }
     "add one Saving account with Fee for Passepartout" in withPartner(jeanPassepartout) { (passepartout, bank) =>
-      val (saving, _) = bank.add(passepartout, account.SavingWithFee(1)(_))
+      val (saving, _) = bank.add(passepartout, account.SavingWithFee(10, 1)(_))
       assert(0.0 === saving.balance)
       assert(50 === saving.post(50).balance)
-      assert(39 === saving.post(50).post(-10).balance)
+      assert(40 === saving.post(50).post(-9).balance)
     }
-    "overdraw a saving account throws an exception" in withPartner(jeanPassepartout) { (passpartout, bank) =>
-      val (saving, _) = bank.add(passpartout, account.Saving(10)(_))
+    "overdraw a saving account throws an exception" in withPartner(jeanPassepartout) { (passepartout, bank) =>
+      val (saving, _) = bank.add(passepartout, account.SavingWithFee(10, 1)(_))
       val exception = intercept[RuntimeException] {
-        saving.post(50).post(-12)
+        saving.post(50).post(-11)
       }
       assert(exception.getMessage === "Withdraw within timeframe not allowed")
     }

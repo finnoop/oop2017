@@ -80,7 +80,9 @@ package account {
     override def timeframeInMonths: Int = 6
   }
 
-  case class SavingWithFee(override val fee: Amount)(override val owner: Partner, override val bookings: Seq[Booking] = Seq()) extends Account(owner, bookings, SavingWithFee(fee)) with PerBooking
+  case class SavingWithFee(override val limit: Amount, override val fee: Amount)(override val owner: Partner, override val bookings: Seq[Booking] = Seq()) extends Account(owner, bookings, SavingWithFee(limit, fee)) with Limited with PerBooking {
+    override def timeframeInMonths: Int = 6
+  }
 
   package fee {
 
