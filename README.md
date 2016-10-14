@@ -97,4 +97,7 @@ http://alvinalexander.com/scala/how-scala-killed-oop-strategy-design-pattern
 
 
   
-
+- Fuer Scala muss man nicht alles schon verstanden haben, der Einstieg ist sehr einfach.
+  * Scala bring viele neue (einfache) Möglichkeiten
+  * Scala ist Java ohne die mühsamen Sachen (. ; redundanzen in Namen)
+  * Scala ist eine Offenbarung nach 20 Jahren Java Unterdrückung. Scala entfesselt meine Fähigkeiten
