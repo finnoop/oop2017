@@ -1,5 +1,11 @@
 # Next
 - Karte für Präsentation
+ * 123rf.com
+    * 16054873
+    * 37811632 (vector)
+    * 10293223
+    * 13109502 (vector)
+
 - Scala-Code anschauen, hinterfragen und anpassen
 
 # TBD
@@ -40,10 +46,7 @@ https://www.infoq.com/articles/java-8-vs-scala
 http://www.codeproject.com/Articles/893211/Differences-Between-Scala-and-Java-Part
 http://www.codeproject.com/Articles/897624/Differences-Between-Scala-and-Java-Part
 https://dzone.com/articles/scala-vs-java-another-view?utm_source=Top%205&utm_medium=email&utm_campaign=top5%202016-10-07
-https://www.google.ch/search?q=hashcode+mutable+java&oq=hashcode+mutable+java&aqs=chrome..69i57.3575j0j4&sourceid=chrome&ie=UTF-8
-
-Images
-123rf.com
+http://alvinalexander.com/scala/how-scala-killed-oop-strategy-design-pattern
 
 # To Discuss
 - package objects

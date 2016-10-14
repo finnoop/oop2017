@@ -1,6 +1,6 @@
 package eightyDays.scala211.bank
 
-import eightyDays.scala211.bank.partner.{Identification, Partner, Person}
+import eightyDays.scala211.bank.partner.{Identification, Partner}
 import org.scalatest.WordSpec
 
 class Accounting extends WordSpec {
@@ -29,6 +29,12 @@ class Accounting extends WordSpec {
       assert(400 === saving.post(400).balance)
       assert(101 === saving.post(400).post(-299).balance)
     }
+    "add one Saving account with Fee for Passepartout" in withPartner(jeanPassepartout) { (passepartout, bank) =>
+      val (saving, _) = bank.add(passepartout, account.SavingWithFee(1)(_))
+      assert(0.0 === saving.balance)
+      assert(50 === saving.post(50).balance)
+      assert(39 === saving.post(50).post(-10).balance)
+    }
     "overdraw a saving account throws an exception" in withPartner(jeanPassepartout) { (passpartout, bank) =>
       val (saving, _) = bank.add(passpartout, account.Saving(10)(_))
       val exception = intercept[RuntimeException] {
@@ -44,17 +50,17 @@ class Accounting extends WordSpec {
         val (current,  bankWithAssets) = bankWithAccounts.post(emptySaving, 300)._2.post(emptyCurrent, 500)
 
         assert(500 == current.balance)
-        assert(800 == phileasFogg.assets(bankWithAssets))
+        assert(800 == phileasFogg.asset(bankWithAssets))
       }
       "has two accounts with multiple bookings" in withPartner(phileasFogg) { (fogg, bank) =>
         val (emptySaving, bankWithAccount) = bank.add(fogg, account.Saving(0)(_))
         val (emptyCurrent, bankWithAccounts) = bankWithAccount.add(fogg, account.Current(_))
 
-        val (bankWithAssets, List(saving, current)) = bankWithAccounts.posts((emptySaving, 320), (emptyCurrent, 570))
+        val (List(saving, current), bankWithAssets) = bankWithAccounts.posts((emptySaving, 320), (emptyCurrent, 570))
 
         assert(320 == saving.balance)
         assert(570 == current.balance)
-        assert(890 == phileasFogg.assets(bankWithAssets))
+        assert(890 == phileasFogg.asset(bankWithAssets))
       }
     }
   }
