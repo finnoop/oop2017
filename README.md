@@ -101,3 +101,4 @@ http://alvinalexander.com/scala/how-scala-killed-oop-strategy-design-pattern
   * Scala bring viele neue (einfache) Möglichkeiten
   * Scala ist Java ohne die mühsamen Sachen (. ; redundanzen in Namen)
   * Scala ist eine Offenbarung nach 20 Jahren Java Unterdrückung. Scala entfesselt meine Fähigkeiten
+- Scala ist auf den ersten Blick sehr Nahe beo Java: Runtime JVM, IDE (IntelliJ, Eclipse), Libraries
