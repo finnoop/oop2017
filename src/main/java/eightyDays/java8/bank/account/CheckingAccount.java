@@ -1,13 +1,13 @@
-package eightyDays.java8.bank;
+package eightyDays.java8.bank.account;
 
 import eightyDays.java8.bank.partner.Partner;
 
 import java.math.BigDecimal;
 import java.util.Currency;
 
-public class SavingAccount extends Account {
+abstract public class CheckingAccount extends Account {
 
-    SavingAccount(Partner owner) {
+    CheckingAccount(Partner owner) {
         super(owner);
     }
 }

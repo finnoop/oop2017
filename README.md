@@ -1,10 +1,7 @@
 # Next
 - Karte für Präsentation
  * 123rf.com
-    * 16054873
     * 37811632 (vector)
-    * 10293223
-    * 13109502 (vector)
 
 - Scala-Code anschauen, hinterfragen und anpassen
 

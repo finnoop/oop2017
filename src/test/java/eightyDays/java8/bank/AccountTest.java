@@ -1,4 +1,4 @@
-package eightyDays.java8.bank;
+package eightyDays.java8.bank.account;
 
 
 import eightyDays.java8.bank.partner.Partner;
@@ -26,15 +26,20 @@ public class AccountTest {
         foggAccount.post(new BigDecimal(1000));
 
         assertEquals("Foggs account must have one booking", 1, foggAccount.getBookings().size());
-        assertEquals("Foggs account must have an ammount of 1000", new BigDecimal(1000), foggAccount.getBalance());
     }
 
     @Test
     public void twoBookings() {
-        foggAccount.post(new BigDecimal(1000));
-        foggAccount.post(new BigDecimal(500));
+        foggAccount.post(new BigDecimal("500"));
+        foggAccount.post(new BigDecimal("1000"));
 
         assertEquals("Foggs account must have one booking", 2, foggAccount.getBookings().size());
-        assertEquals("Foggs account must have an ammount of 1500", new BigDecimal(1500), foggAccount.getBalance());
+    }
+
+    @Test
+    public void balance() {
+        foggAccount.post(new BigDecimal("500.25"));
+        foggAccount.post(new BigDecimal("1000.25"));
+        assertEquals("Foggs account must have an amount of 1500.50", new BigDecimal("1500.50"), foggAccount.getBalance());
     }
 }

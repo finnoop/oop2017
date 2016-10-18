@@ -1,4 +1,4 @@
-package eightyDays.java8.bank;
+package eightyDays.java8.bank.account;
 
 import eightyDays.java8.bank.partner.Identification;
 import eightyDays.java8.bank.partner.Partner;
@@ -33,10 +33,15 @@ public abstract class Account {
     }
 
     public BigDecimal getBalance() {
-        return bookings.stream().map(Booking::getAmount).reduce(new BigDecimal(0.0), BigDecimal::add);
+        return bookings.stream().map(Booking::getAmount).reduce(new BigDecimal(0), BigDecimal::add);
     }
 
     public void post(BigDecimal value) {
         bookings.add(new Booking(value, LocalDateTime.now(), "Booking"));
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s number:%s balance:%.2f", getClass().getSimpleName(), number.getNumber(), getBalance());
     }
 }
