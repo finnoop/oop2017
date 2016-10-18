@@ -1,7 +1,6 @@
 package eightyDays.java8.bank;
 
 import eightyDays.Testdata;
-import eightyDays.java8.bank.partner.Address;
 import eightyDays.java8.bank.partner.Identification;
 import eightyDays.java8.bank.partner.Partner;
 import eightyDays.java8.bank.partner.Person;
@@ -21,11 +20,9 @@ public class SimpleBank {
 
     @Before
     public void init() {
-        phileasFogg = new Person("Phileas","Fogg")
-                .addAddress(new Address("Savile Row", "7", "WC2N", "London"));
+        phileasFogg = new Person("Phileas","Fogg");
 
-        aoudaFogg = new Person("Aouda","Fogg")
-                .addAddress(new Address("Savile Row", "7", "WC2N", "London"));
+        aoudaFogg = new Person("Aouda","Fogg");
     }
 
     @Test
