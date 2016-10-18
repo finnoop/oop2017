@@ -1,8 +1,10 @@
 package eightyDays.java8.bank;
 
+import eightyDays.java8.bank.partner.Identification;
 import eightyDays.java8.bank.partner.Partner;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Date;
@@ -10,45 +12,31 @@ import java.util.List;
 
 public abstract class Account {
     private Partner owner = null;
-    private Currency currency = null;
-    private double interest = 0;
-    private BigDecimal balance = new BigDecimal(0);
-    private List<Statement> statements = new ArrayList<>();
+    private Identification number;
+    private List<Booking> bookings = new ArrayList<>();
 
-    Account(Partner owner, Currency currency, double interest, BigDecimal balance) {
+    Account(Partner owner) {
+        this.number = Identification.newIdentification();
         this.owner = owner;
-        this.currency = currency;
-        this.interest = interest;
-        this.balance = balance;
-    }
-
-    public void deposit(BigDecimal amount) {
-        statements.add(new Statement(new Date(), amount));
-        balance = balance.add(amount);
-    }
-
-    public void withdraw(BigDecimal amount) {
-        statements.add(new Statement(new Date(), amount));
-        balance = balance.subtract(amount);
     }
 
     public Partner getOwner() {
         return owner;
     }
 
-    public Currency getCurrency() {
-        return currency;
+    public List<Booking> getBookings() {
+        return bookings;
     }
 
-    public double getInterest() {
-        return interest;
+    public Identification getNumber() {
+        return number;
     }
 
     public BigDecimal getBalance() {
-        return balance;
+        return bookings.stream().map(Booking::getAmount).reduce(new BigDecimal(0.0), BigDecimal::add);
     }
 
-    public List<Statement> getStatements() {
-        return statements;
+    public void post(BigDecimal value) {
+        bookings.add(new Booking(value, LocalDateTime.now(), "Booking"));
     }
 }

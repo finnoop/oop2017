@@ -7,7 +7,7 @@ import java.util.Currency;
 
 public class SavingAccount extends Account {
 
-    SavingAccount(Partner owner, Currency currency, double interest, BigDecimal balance) {
-        super(owner, currency, interest, balance);
+    SavingAccount(Partner owner) {
+        super(owner);
     }
 }
