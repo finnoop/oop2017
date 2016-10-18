@@ -6,6 +6,25 @@ import java.time.LocalDateTime;
 public class Booking {
     private LocalDateTime valuta;
     private BigDecimal amount;
+    private String text;
+
+    public Booking(BigDecimal amount, LocalDateTime valuta,  String text) {
+        this.amount = amount;
+        this.valuta = valuta;
+        this.text = text;
+    }
+
+    public LocalDateTime getValuta() {
+        return valuta;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public String getText() {
+        return text;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -26,25 +45,5 @@ public class Booking {
         result = 31 * result + amount.hashCode();
         result = 31 * result + (text != null ? text.hashCode() : 0);
         return result;
-    }
-
-    private String text;
-
-    public Booking(BigDecimal amount, LocalDateTime valuta,  String text) {
-        this.amount = amount;
-        this.valuta = valuta;
-        this.text = text;
-    }
-
-    public LocalDateTime getValuta() {
-        return valuta;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public String getText() {
-        return text;
     }
 }
