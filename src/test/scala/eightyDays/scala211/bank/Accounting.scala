@@ -54,6 +54,7 @@ class Accounting extends WordSpec {
       }
       "has two accounts with multiple bookings" in withPartner(phileasFogg) { (fogg, bank) =>
         val (emptySaving, bankWithAccount) = bank.add(fogg, account.Saving(0)(_))
+        emptySaving
         val (emptyCurrent, bankWithAccounts) = bankWithAccount.add(fogg, account.Current(_))
 
         val (List(saving, current), bankWithAssets) = bankWithAccounts.posts((emptySaving, 320), (emptyCurrent, 570))

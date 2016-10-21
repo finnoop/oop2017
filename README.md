@@ -75,6 +75,7 @@ http://alvinalexander.com/scala/how-scala-killed-oop-strategy-design-pattern
 - Implicit conversion
   * Kann zu magic führen
 - {} kann fast überall anstelle von was anderem stehen z.B. Bei getOrElese bei Option
+- Monads mit Option und Try (mehere withdraws
 - Pattern Matching
 - Traits
   * (Self types)
@@ -99,3 +100,6 @@ http://alvinalexander.com/scala/how-scala-killed-oop-strategy-design-pattern
   * Scala ist Java ohne die mühsamen Sachen (. ; redundanzen in Namen)
   * Scala ist eine Offenbarung nach 20 Jahren Java Unterdrückung. Scala entfesselt meine Fähigkeiten
 - Scala ist auf den ersten Blick sehr Nahe beo Java: Runtime JVM, IDE (IntelliJ, Eclipse), Libraries
+- symblische methoden namen
+- post-, in-fix notation
+- null is böse! if (value != null & value ....) =>> es gibt option, die das if unnötig macht. Das gleiche mit leeren Collection. Manchmal hat null auch eine implizite Semantik

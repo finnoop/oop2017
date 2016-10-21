@@ -3,7 +3,7 @@ package eightyDays.scala211.bank
 import eightyDays.scala211.bank.account.{Account, Amount}
 import eightyDays.scala211.bank.partner.{Identification, Partner}
 
-case class Bank(name: String, partners: Map[Identification, Partner] = Map[Identification, Partner](), accounts: Set[Account] = Set[Account]()) {
+case class Bank(name: String, var partners: Map[Identification, Partner] = Map[Identification, Partner](), var accounts: Set[Account] = Set[Account]()) {
   def post(account: Account, value: Amount): (Account, Bank) = {
     val updatedAccount = account.post(value)
     (updatedAccount, copy(accounts = accounts - account + updatedAccount))
@@ -14,9 +14,10 @@ case class Bank(name: String, partners: Map[Identification, Partner] = Map[Ident
     (accounts._1 :+ updatedAccount, updatedBank)
   }
 
-  def add(partnerId: Identification, accountFactory: (Partner => Account)): (Account, Bank) = {
+  def add(partnerId: Identification, accountFactory: (Partner => Account)): Account = {
     val newAccount = accountFactory(partners(partnerId))
-    (newAccount, copy(accounts = accounts + newAccount))
+    accounts = accounts + newAccount
+    newAccount
   }
 
   def add(pPartner: Partner): (Identification, Bank) =

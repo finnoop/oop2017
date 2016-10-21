@@ -13,18 +13,22 @@ package object account {
 }
 
 package account {
+
+  import scala.util.Try
+
   object Account {
     def byOwner(owner: Partner): Account => Boolean = account => account.owner == owner
   }
 
-  abstract class Account(val owner: Partner, val bookings: Seq[Booking], makeNew: ((Partner, Seq[Booking]) => Account)) {
+  abstract class Account(val owner: Partner, val bookings: Seq[Booking], factoryMethod: ((Partner, Seq[Booking]) => Account)) {
     implicit def booking2Amount(booking: Booking): Amount = booking.value
 
     val number = Identification()
 
     def balance: Amount = bookings.foldLeft(BigDecimal.valueOf(0))((balance, booking) => balance + booking)
 
-    def post(value: Amount, valuta: LocalDateTime = LocalDateTime.now(), text: String = "Booking") = makeNew(owner, Booking(value, valuta, text) +: bookings)
+    def withdraw(value: Amount, valuta: LocalDateTime = LocalDateTime.now(), text: String = "Booking") = Try(if (value > 0) post(-value, valuta,text) else throw new RuntimeException("Withdraw within timeframe not allowed"))
+    private def post(value: Amount, valuta: LocalDateTime = LocalDateTime.now(), text: String = "Booking") = factoryMethod(owner, Booking(value, valuta, text) +: bookings)
 
     override def toString: String = s"${getClass.getSimpleName} number:${number.number} balance:$balance"
   }
