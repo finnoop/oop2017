@@ -22,7 +22,6 @@ package partner {
     }
   }
 
-  case class LegalEntity(override val name: String) extends Partner(name)
   case class Identification(number: String = java.util.UUID.randomUUID.toString)
 
 }
