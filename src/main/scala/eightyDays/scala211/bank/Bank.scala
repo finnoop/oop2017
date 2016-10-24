@@ -5,8 +5,10 @@ import eightyDays.scala211.bank.partner.{Identification, Partner}
 
 case class Bank(name: String, var partners: Map[Identification, Partner] = Map[Identification, Partner](), var accounts: Set[Account] = Set[Account]()) {
   def post(account: Account, value: Amount): (Account, Bank) = {
-    val updatedAccount = account.post(value)
-    (updatedAccount, copy(accounts = accounts - account + updatedAccount))
+    // TODO fix with correct account method
+    val updatedAccount = account.deposit(value)
+    // TODO fix Try(updatedAccount)
+    (updatedAccount.get, copy(accounts = accounts - account + updatedAccount.get))
   }
 
   def posts(posts: (Account, Amount)*) = posts.foldLeft((List[Account](), this)) { (accounts, post) =>

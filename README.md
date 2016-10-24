@@ -67,7 +67,7 @@ http://alvinalexander.com/scala/how-scala-killed-oop-strategy-design-pattern
   * Builder Pattern Java vs Scala
   * Command Pattern
   * Filter auf Felder einer Sub-Klasse?
-- Tupels
+- Tupels -> Bank.posts in Java/Scala
 - Map ->
   * Symbolic names in scala like -> \:
   * == wird übersetzt als equals, eq ist wie == in Java
