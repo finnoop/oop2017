@@ -44,7 +44,7 @@ package account {
                  valuta: LocalDateTime = LocalDateTime.now(),
                  text: String = "Booking") =
       Try(
-        if (value < 0) post(value, valuta, text)
+        if (value > 0) post(value, valuta, text)
         else
           throw new RuntimeException("Deposit of negative amount not allowed"))
 

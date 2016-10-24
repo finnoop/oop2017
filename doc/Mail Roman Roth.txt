@@ -1,0 +1,18 @@
+-----Original Message-----
+From: Roth Roman 
+Sent: Dienstag, 7. Juni 2016 19:34
+To: Kauth Simon <Simon.Kauth@finnova.com>
+Subject: Scala-Beurteilung
+
+
+Hoi Simon,
+
+ich sende dir diverse Dokumente zur Scala-Beurteilung von msg und Finnova sowie noch folgende Hinweise pro Scala vom letzten Jahr:
+•	Functional Programming ist ein Paradigma das im Frontend alternativlos ist. Scala oder Java8 passt da sehr gut dazu.
+•	Verwendung von Domain Specific Languages ist Stand der Technik und üblich. 
+•	Scala ist die beste Sprache (für die JVM), um komplexe und fehler-sensible Systeme und Anwendungen zu realisieren.
+•	Wichtiger als die Programmiersprache selbst ist die SDK oder die Frameworks. Da hat Scala sei je Maßstäbe gesetzt (Scala und seine SDK ermöglicht signifikant ausdrucksstärkeren und kürzeren Code).
+•	Die IDEs für Scala sind inzwischen ebenso reif wie die für Java.
+•	Java8 ist eine sehr junge Sprache. Das unterstützende Framework existiert noch nicht in dem Maße wie für Scala (Java8 ist unter 1 Jahr alt, Scala hingegen ist ca. 10 Jahre reif)
+
+Grüsse, Roman

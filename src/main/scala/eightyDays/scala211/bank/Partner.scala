@@ -5,7 +5,6 @@ package partner {
   import eightyDays.scala211.bank.account.{Account, Amount}
 
   abstract class Partner(val name: String) {
-
     def asset(bank: Bank): Amount = bank.filterAccounts(Account.byOwner(this)).foldLeft(BigDecimal.valueOf(0)) { case (balance, account) => balance + account.balance }
   }
 
@@ -14,6 +13,7 @@ package partner {
   }
 
   case class Person(firstName: String, override val name: String) extends Partner(name)
+  case class LegalEntity(override val name: String) extends Partner(name)
 
   object Person {
     def byFirstname(firstName: String): Partner => Boolean = {
@@ -23,5 +23,4 @@ package partner {
   }
 
   case class Identification(number: String = java.util.UUID.randomUUID.toString)
-
 }

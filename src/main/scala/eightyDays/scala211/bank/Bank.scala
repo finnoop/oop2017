@@ -3,18 +3,19 @@ package eightyDays.scala211.bank
 import eightyDays.scala211.bank.account.{Account, Amount}
 import eightyDays.scala211.bank.partner.{Identification, Partner}
 
+import scala.util.Try
+
+
 case class Bank(name: String, var partners: Map[Identification, Partner] = Map[Identification, Partner](), var accounts: Set[Account] = Set[Account]()) {
-  def post(account: Account, value: Amount): (Account, Bank) = {
-    // TODO fix with correct account method
-    val updatedAccount = account.deposit(value)
-    // TODO fix Try(updatedAccount)
-    (updatedAccount.get, copy(accounts = accounts - account + updatedAccount.get))
+  def post(account: Account, action: => Try[Account]) = action.map{ updatedAccount =>
+    accounts = accounts - account
+    accounts = accounts + updatedAccount
+    updatedAccount
   }
 
-  def posts(posts: (Account, Amount)*) = posts.foldLeft((List[Account](), this)) { (accounts, post) =>
-    val (updatedAccount, updatedBank) = accounts._2.post(post._1, post._2)
-    (accounts._1 :+ updatedAccount, updatedBank)
-  }
+  def deposit(account: Account, value: Amount) = post(account, account.deposit(value))
+
+  def withdraw(account: Account, value: Amount) = post(account, account.withdraw(value))
 
   def add(partnerId: Identification, accountFactory: (Partner => Account)): Account = {
     val newAccount = accountFactory(partners(partnerId))
