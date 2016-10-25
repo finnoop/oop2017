@@ -4,22 +4,22 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Booking {
+    private BigDecimal value;
     private LocalDateTime valuta;
-    private BigDecimal amount;
     private String text;
 
-    public Booking(BigDecimal amount, LocalDateTime valuta,  String text) {
-        this.amount = amount;
+    public Booking(BigDecimal value, LocalDateTime valuta, String text) {
+        this.value = value;
         this.valuta = valuta;
         this.text = text;
     }
 
-    public LocalDateTime getValuta() {
-        return valuta;
+    public BigDecimal getValue() {
+        return value;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public LocalDateTime getValuta() {
+        return valuta;
     }
 
     public String getText() {
@@ -33,8 +33,8 @@ public class Booking {
 
         Booking booking = (Booking) o;
 
+        if (!value.equals(booking.value)) return false;
         if (!valuta.equals(booking.valuta)) return false;
-        if (!amount.equals(booking.amount)) return false;
         return text != null ? text.equals(booking.text) : booking.text == null;
 
     }
@@ -42,7 +42,7 @@ public class Booking {
     @Override
     public int hashCode() {
         int result = valuta.hashCode();
-        result = 31 * result + amount.hashCode();
+        result = 31 * result + value.hashCode();
         result = 31 * result + (text != null ? text.hashCode() : 0);
         return result;
     }

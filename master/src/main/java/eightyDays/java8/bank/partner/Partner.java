@@ -1,8 +1,11 @@
 package eightyDays.java8.bank.partner;
 
+import eightyDays.java8.bank.Bank;
+
+import java.math.BigDecimal;
 import java.util.function.Predicate;
 
-abstract public class Partner {
+public abstract class Partner {
     private String name;
 
     public Partner(String pName) {
@@ -13,8 +16,13 @@ abstract public class Partner {
         return name;
     }
 
-    public void setName(String pName) {
-        name = pName;
+    public BigDecimal asset(Bank bank) {
+        // TODO
+        return BigDecimal.ONE;
+    }
+
+    public static Predicate<Partner> byName(String name) {
+        return partner -> partner.getName().equals(name);
     }
 
     @Override
@@ -31,9 +39,5 @@ abstract public class Partner {
     @Override
     public int hashCode() {
         return name.hashCode();
-    }
-
-    public static Predicate<Partner> byName(String name) {
-        return partner -> partner.getName().equals(name);
     }
 }
