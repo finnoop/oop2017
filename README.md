@@ -103,3 +103,4 @@ http://alvinalexander.com/scala/how-scala-killed-oop-strategy-design-pattern
 - symblische methoden namen
 - post-, in-fix notation
 - null is böse! if (value != null & value ....) =>> es gibt option, die das if unnötig macht. Das gleiche mit leeren Collection. Manchmal hat null auch eine implizite Semantik
+- Nesting von Funktionen und anderen Sachen ist wichtig!!
