@@ -7,17 +7,17 @@ import static org.junit.Assert.*;
 public class LegalEntityTest {
     @Test
     public void getForm() throws Exception {
-        // TBD
+        // TBD jrb
     }
 
     @Test
     public void testEquals() throws Exception {
-        // TBD
+        // TBD jrb
     }
 
     @Test
     public void testEashCode() throws Exception {
-        // TBD
+        // TBD jrb
     }
 
 }

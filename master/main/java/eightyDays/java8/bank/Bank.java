@@ -41,7 +41,7 @@ public class Bank {
     public Identification add(final Partner pPartner) {
         Identification result;
         if (partners.containsValue(pPartner)) {
-            result = partners.entrySet().stream()
+            return partners.entrySet().stream()
                     .filter(keyValue -> pPartner.equals(keyValue.getValue()))
                     .findFirst()
                     .get()

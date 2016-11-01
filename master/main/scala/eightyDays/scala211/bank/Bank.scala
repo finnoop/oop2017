@@ -22,13 +22,24 @@ case class Bank(name: String, var partners: Map[Identification, Partner] = Map[I
     newAccount
   }
 
-  def add(pPartner: Partner): (Identification, Bank) =
+  def add(pPartner: Partner): Identification =
+  {
+    val partner = partners.find(_._2)
+
+    if (partner.isDefined) return partner.get._1
+    else {
+      val result = Identification()
+      partners = partners + (result -> pPartner)
+      result
+    }
+  }
     partners
       .find(_._2 == pPartner)
-      .map { entry => (entry._1, this) }
+      .map { entry => entry._1 }
       .getOrElse {
         val result = Identification()
-        (result, copy(partners = partners + (result -> pPartner)))
+        partners = partners + (result -> pPartner)
+        result
       }
 
   def find(predicate: Partner => Boolean): Option[Partner] = partners
