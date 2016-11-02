@@ -20,7 +20,7 @@ package account {
       account => account.owner == owner
   }
 
-  abstract class Account(val owner: Partner,
+  case class Account(val owner: Partner,
                          val bookings: Seq[Booking],
                          factoryMethod: ((Partner, Seq[Booking]) => Account)) {
     implicit def booking2Amount(booking: Booking): Amount = booking.value
@@ -32,12 +32,10 @@ package account {
         balance + booking)
 
     def withdraw(value: Amount,
-                 valuta: LocalDateTime = LocalDateTime.now(),
-                 text: String = "Booking") =
-      Try(
-        if (value > 0) post(-value, valuta, text)
+                 valuta: LocalDateTime = LocalDateTime.now()) =
+        if (value > 0) post(-value, valuta)
         else
-          throw new RuntimeException("Withdraw of negative amount not allowed"))
+          throw new RuntimeException("Withdraw of negative amount not allowed")
 
     def deposit(value: Amount,
                  valuta: LocalDateTime = LocalDateTime.now(),
@@ -48,9 +46,8 @@ package account {
           throw new RuntimeException("Deposit of negative amount not allowed"))
 
     protected def post(value: Amount,
-                     valuta: LocalDateTime = LocalDateTime.now(),
-                     text: String = "Booking") =
-      factoryMethod(owner, Booking(value, valuta, text) +: bookings)
+                     valuta: LocalDateTime = LocalDateTime.now()) =
+      factoryMethod(owner, Booking(value, valuta) +: bookings)
 
     override def toString: String =
       s"${getClass.getSimpleName} number:${number.number} balance:$balance"
