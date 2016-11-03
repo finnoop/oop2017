@@ -7,8 +7,8 @@ import static org.junit.Assert.*;
 public class IdenticationTest {
     @Test
     public void testGetNumber() throws Exception {
-        Identication out = new Identication();
+        Identification out = new Identification();
         assertTrue(out.getNumber().toString().length() > 0);
-        assertTrue(out.getNumber() != new Identication().getNumber());
+        assertTrue(out.getNumber() != new Identification().getNumber());
     }
 }
