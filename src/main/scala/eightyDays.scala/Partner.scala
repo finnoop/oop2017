@@ -1,8 +1,8 @@
-package eightydays
+package eightyDays.scala
 
 import java.util.UUID
 
-case class Partner(name: String)
+abstract class Partner(val name: String)
 
 case class Person(override val name: String, firstName: String) extends Partner(name)
 

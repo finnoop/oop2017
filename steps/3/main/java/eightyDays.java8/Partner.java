@@ -1,6 +1,6 @@
-package eightyDays;
+package eightyDays.java8;
 
-public class Partner {
+abstract public class Partner {
     private final String name;
 
     public Partner(String pName) {

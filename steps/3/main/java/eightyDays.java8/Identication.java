@@ -1,4 +1,4 @@
-package eightyDays;
+package eightyDays.java8;
 
 import java.util.UUID;
 
