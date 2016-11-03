@@ -16,6 +16,6 @@ public class Bank {
     }
 
     public Optional<Partner> getPartner(Identication id) {
-        return Optional.of(partners.get(id));
+        return Optional.ofNullable(partners.get(id));
     }
 }
