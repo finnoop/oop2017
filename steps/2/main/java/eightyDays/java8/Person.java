@@ -1,4 +1,4 @@
-package eightyDays;
+package eightyDays.java8;
 
 public class Person extends Partner {
     private final String firstName;
