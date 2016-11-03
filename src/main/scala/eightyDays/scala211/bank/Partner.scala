@@ -3,7 +3,7 @@ package eightyDays.scala211.bank
 import eightyDays.scala211.bank.account.{Account, Amount}
 
   abstract class Partner(val name: String) {
-    def asset(bank: Bank): Amount = bank.filterAccounts(Account.byOwner(this)).foldLeft(BigDecimal.valueOf(0)) { case (balance, account) => balance + account.balance }
+//    def asset(bank: Bank): Amount = bank.filterAccounts(Account.byOwner(this)).foldLeft(BigDecimal.valueOf(0)) { case (balance, account) => balance + account.balance }
   }
 
   object Partner {

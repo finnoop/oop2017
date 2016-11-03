@@ -12,9 +12,9 @@ case class Bank(name: String, var partners: Map[Identification, Partner] = Map[I
     updatedAccount
   }
 
-  def deposit(account: Account, value: Amount) = post(account, account.deposit(value))
+  def deposit(account: Account, value: Amount) = post(account, Try(account.deposit(value)))
 
-  def withdraw(account: Account, value: Amount) = post(account, account.withdraw(value))
+  def withdraw(account: Account, value: Amount) = post(account, Try(account.withdraw(value)))
 
   def add(partnerId: Identification, accountFactory: (Partner => Account)): Account = {
     val newAccount = accountFactory(partners(partnerId))
@@ -22,24 +22,13 @@ case class Bank(name: String, var partners: Map[Identification, Partner] = Map[I
     newAccount
   }
 
-  def add(pPartner: Partner): Identification =
-  {
-    val partner = partners.find(_._2)
-
-    if (partner.isDefined) return partner.get._1
-    else {
-      val result = Identification()
-      partners = partners + (result -> pPartner)
-      result
-    }
-  }
+  def add(pPartner: Partner): (Identification, Bank) =
     partners
       .find(_._2 == pPartner)
-      .map { entry => entry._1 }
+      .map { entry => (entry._1, this) }
       .getOrElse {
         val result = Identification()
-        partners = partners + (result -> pPartner)
-        result
+        (result, copy(partners = partners + (result -> pPartner)))
       }
 
   def find(predicate: Partner => Boolean): Option[Partner] = partners
