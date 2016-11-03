@@ -117,7 +117,7 @@ public class BankTest {
     private Bank bigBank() {
         Bank bigBank = new Bank("Bank of England");
 
-        eightyDays.scala211.Testdata testdata = new eightyDays.scala211.Testdata();
+        eightyDays.scala.Testdata testdata = new eightyDays.scala.Testdata();
         testdata.personsJ(11).forEach(bigBank::add);
         return bigBank;
     }

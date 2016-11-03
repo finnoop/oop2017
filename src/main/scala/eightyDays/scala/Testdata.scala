@@ -1,4 +1,4 @@
-package eightyDays.scala211
+package eightyDays.scala
 
 import com.github.tototoshi.csv.{CSVReader, DefaultCSVFormat}
 
@@ -35,7 +35,7 @@ class Testdata {
   def personsS(number: Int) =
     (for (i <- 1 to number)
       yield
-        eightyDays.scala211.bank.Person(
+        eightyDays.scala.bank.Person(
           Random.shuffle(nachnamen).head,
           Random.shuffle(vornamen).head
         )).toList

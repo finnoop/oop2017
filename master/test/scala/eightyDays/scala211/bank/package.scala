@@ -1,4 +1,4 @@
-package eightyDays.scala211
+package eightyDays.scala
 
 /**
   * Created by Andreas Boss on 06/10/16.

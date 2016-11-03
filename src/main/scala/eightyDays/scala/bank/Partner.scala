@@ -1,6 +1,6 @@
-package eightyDays.scala211.bank
+package eightyDays.scala.bank
 
-import eightyDays.scala211.bank.account.{Account, Amount}
+import eightyDays.scala.bank.account.{Account, Amount}
 
   abstract class Partner(val name: String) {
 //    def asset(bank: Bank): Amount = bank.filterAccounts(Account.byOwner(this)).foldLeft(BigDecimal.valueOf(0)) { case (balance, account) => balance + account.balance }

@@ -1,4 +1,4 @@
-package eightyDays.scala211.bank
+package eightyDays.scala.bank
 
 import org.scalatest.WordSpec
 
@@ -18,7 +18,7 @@ class Accounting extends WordSpec {
     assert(101 === saving.deposit(400).withdraw(299).balance)
   }
 
-  "Withdraw saving account withdraw over limit" in { 
+  "Withdraw saving account withdraw over limit" in {
     val saving = account.Saving(300)(jeanPassepartout)
     assert(0.0 === saving.balance)
     assert(400 === saving.deposit(400).balance)

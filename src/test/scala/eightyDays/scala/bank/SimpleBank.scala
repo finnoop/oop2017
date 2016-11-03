@@ -1,4 +1,4 @@
-package eightyDays.scala211.bank
+package eightyDays.scala.bank
 
 import org.scalatest.WordSpec
 

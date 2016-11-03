@@ -1,9 +1,9 @@
-package eightyDays.scala211.bank
+package eightyDays.scala.bank
 
 import java.time.LocalDateTime
 
-import eightyDays.scala211.bank.account.fee.PerBooking
-import eightyDays.scala211.bank.account.withdrawal.{Limited, NoWithdraw}
+import eightyDays.scala.bank.account.fee.PerBooking
+import eightyDays.scala.bank.account.withdrawal.{Limited, NoWithdraw}
 
 import scala.language.implicitConversions
 

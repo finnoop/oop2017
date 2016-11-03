@@ -1,6 +1,6 @@
-package eightyDays.scala211
+package eightyDays.scala
 
-import eightyDays.scala211.bank.Bank
+import eightyDays.scala.bank.Bank
 import org.openjdk.jmh.annotations.{Benchmark, Scope, Setup, State}
 
 object Benchmarks {

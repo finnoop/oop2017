@@ -1,4 +1,4 @@
-package eightyDays.scala211.bank
+package eightyDays.scala.bank
 
 import java.time.LocalDateTime
 

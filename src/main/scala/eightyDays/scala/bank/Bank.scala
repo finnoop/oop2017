@@ -1,6 +1,6 @@
-package eightyDays.scala211.bank
+package eightyDays.scala.bank
 
-import eightyDays.scala211.bank.account.{Account, Amount}
+import eightyDays.scala.bank.account.{Account, Amount}
 
 import scala.util.Try
 

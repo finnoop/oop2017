@@ -2,7 +2,7 @@ package eightyDays.java8;
 
 import eightyDays.java8.bank.Bank;
 import eightyDays.java8.bank.partner.Partner;
-import eightyDays.scala211.Testdata;
+import eightyDays.scala.Testdata;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;

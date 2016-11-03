@@ -1,4 +1,4 @@
-package eightyDays.java8.bank.account;
+package eightyDays.java8.account;
 
 
 import eightyDays.java8.bank.partner.Partner;
