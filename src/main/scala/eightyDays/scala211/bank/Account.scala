@@ -48,11 +48,8 @@ package account {
       def threshold: Amount
 
       override def withdraw(value: Amount, valuta: LocalDateTime): Account = {
-        (if (balance > threshold)
-          this
-        else
-          super.post(-fee, valuta)
-        ).withdraw(value, valuta)
+        val booked = super.withdraw(value, valuta)
+        if (balance > threshold) booked.post(-fee, valuta) else booked
       }
 
       override def deposit(value: Amount, valuta: LocalDateTime): Account =
