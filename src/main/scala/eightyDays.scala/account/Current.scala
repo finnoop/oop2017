@@ -1,8 +1,8 @@
 package eightyDays.scala.account
 
 import eightyDays.scala.Partner
-import fee._
-import withdrawal._
+import eightyDays.scala.account.fee._
+import eightyDays.scala.account.withdrawal._
 
 case class Current(override val withdrawLimit: Amount) // for Limited
                   (override val fee: Amount, override val threshold: Amount) // for LowBalancePerBooking
