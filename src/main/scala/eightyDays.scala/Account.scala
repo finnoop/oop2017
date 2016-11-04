@@ -42,9 +42,9 @@ package account {
   package fee {
 
     trait LowBalancePerBooking extends Account {
-      def fee: Amount
+      val fee: Amount
 
-      def threshold: Amount
+      val threshold: Amount
 
       private[this] def feeIfPoossible(account: Account, valuta: LocalDateTime) =
         if (account.balance < threshold)
@@ -70,7 +70,7 @@ package account {
     }
 
     trait Limited extends Account {
-      def withdrawLimit: Amount
+      val withdrawLimit: Amount
 
       override def withdraw(value: Amount, valuta: LocalDateTime): Account =
         if (value <= withdrawLimit)
@@ -79,20 +79,4 @@ package account {
           throw new RuntimeException("Withdraw not allowed")
     }
   }
-
-  import eightyDays.scala.account.fee._
-  import eightyDays.scala.account.withdrawal._
-
-  case class Current(override val withdrawLimit: Amount) // for Limited
-                    (override val fee: Amount, override val threshold: Amount) // for LowBalancePerBooking
-                    (override val owner: Partner, override val bookings: Seq[Booking] = Seq()) // for account
-
-    extends Account(owner, bookings, Current(withdrawLimit)(fee, threshold))
-      with Limited with LowBalancePerBooking
-
-  case class Saving(override val withdrawLimit: Amount) // for Limited
-                   (override val owner: Partner, override val bookings: Seq[Booking] = Seq()) // for account
-
-    extends Account(owner, bookings, Saving(withdrawLimit))
-      with Limited with NoOverdraw
 }
