@@ -1,7 +1,6 @@
 package eightyDays.scala
 
 import java.time.LocalDateTime
-
 import scala.language.implicitConversions
 
 package object account {
@@ -34,7 +33,7 @@ package account {
       else
         throw new RuntimeException("Deposit of negative amount not allowed")
 
-    protected[account] def post(value: Amount, valuta: LocalDateTime = LocalDateTime.now()) = factoryMethod(owner, Booking(value, valuta) +: bookings)
+    protected[account] def post(value: Amount, valuta: LocalDateTime) = factoryMethod(owner, Booking(value, valuta) +: bookings)
 
     override def toString: String =
       s"${getClass.getSimpleName} number:${number.number} getBalance:$balance"
@@ -47,15 +46,15 @@ package account {
 
       def threshold: Amount
 
-      override def withdraw(value: Amount, valuta: LocalDateTime): Account = {
-        val booked = super.withdraw(value, valuta)
-        if (balance > threshold) booked.post(-fee, valuta) else booked
-      }
+      private[this] def feeIfPoossible(account: Account, valuta: LocalDateTime) =
+        if (account.balance < threshold)
+          account.post(-fee, valuta)
+        else
+          account
 
-      override def deposit(value: Amount, valuta: LocalDateTime): Account =
-        super
-          .deposit(value, valuta)
-          .post(-fee,valuta)
+      override def withdraw(value: Amount, valuta: LocalDateTime): Account = feeIfPoossible(super.withdraw(value, valuta), valuta)
+
+      override def deposit(value: Amount, valuta: LocalDateTime): Account = feeIfPoossible(super.deposit(value, valuta), valuta)
     }
   }
 
@@ -91,11 +90,9 @@ package account {
     extends Account(owner, bookings, Current(withdrawLimit)(fee, threshold))
       with Limited with LowBalancePerBooking
 
-
   case class Saving(override val withdrawLimit: Amount) // for Limited
                    (override val owner: Partner, override val bookings: Seq[Booking] = Seq()) // for account
 
     extends Account(owner, bookings, Saving(withdrawLimit))
       with Limited with NoOverdraw
-
 }

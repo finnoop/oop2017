@@ -16,6 +16,6 @@ public class BankTest {
     @Test
     public void getPartner() throws Exception {
         Bank out = new Bank("TestBank");
-        assertEquals(Optional.empty(), out.getPartner(new Identication()));
+        assertEquals(Optional.empty(), out.getPartner(new Identification()));
     }
 }

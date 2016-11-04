@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class Bank {
     private final String name;
-    private HashMap<Identication, Partner> partners = new HashMap<>();
+    private HashMap<Identification, Partner> partners = new HashMap<>();
 
     public Bank(String pName) {
         name = pName;
@@ -15,7 +15,7 @@ public class Bank {
         return name;
     }
 
-    public Optional<Partner> getPartner(Identication id) {
+    public Optional<Partner> getPartner(Identification id) {
         return Optional.ofNullable(partners.get(id));
     }
 }
