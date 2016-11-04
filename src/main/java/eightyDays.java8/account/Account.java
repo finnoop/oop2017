@@ -38,7 +38,7 @@ public abstract class Account {
             throw new RuntimeException("Deposit of negative amount not allowed");
     }
 
-    protected Account post(BigDecimal value, LocalDateTime valuta) {
+    public Account post(BigDecimal value, LocalDateTime valuta) {
         return factoryMethod.apply(owner, new ArrayList<Booking>(bookings) {{
             add(new Booking(value, valuta));
         }});

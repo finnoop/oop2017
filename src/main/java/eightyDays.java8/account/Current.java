@@ -1,8 +1,8 @@
 package eightyDays.java8.account;
 
 import eightyDays.java8.Partner;
+import eightyDays.java8.account.fee.LowBalancePerBooking;
 import eightyDays.java8.account.withdrawal.Limited;
-import eightyDays.java8.account.withdrawal.NoOverdraw;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,22 +12,35 @@ import java.util.function.BiFunction;
 
 public class Current extends Account {
     private final BigDecimal withdrawLimit;
+    private final BigDecimal threshold;
+    private final BigDecimal fee;
 
-    public Current(Partner pOwner, BigDecimal pWithdrawLimit) {
-        this(pOwner, new ArrayList<>(), pWithdrawLimit);
+    public Current(Partner pOwner, BigDecimal pWithdrawLimit, BigDecimal pFee, BigDecimal pThreshold) {
+        this(pOwner, new ArrayList<>(), pWithdrawLimit, pFee, pThreshold);
     }
 
-    public Current(Partner pOwner, List<Booking> pBookings, BigDecimal pWithdrawLimit) {
-        super(pOwner, pBookings, (owner, bookings) -> new Current(owner, bookings, pWithdrawLimit));
+    public Current(Partner pOwner, List<Booking> pBookings, BigDecimal pWithdrawLimit, BigDecimal pFee, BigDecimal pThreshold) {
+        super(pOwner, pBookings, (owner, bookings) -> new Current(owner, bookings, pWithdrawLimit, pFee, pThreshold));
         withdrawLimit = pWithdrawLimit;
+        threshold = pThreshold;
+        fee = pFee;
     }
 
     @Override
     public Account withdraw(BigDecimal value, LocalDateTime valuta) {
-        return new NoOverdraw(
-                new Limited(super::withdraw, withdrawLimit).apply())
-                .apply(getBalance())
+        return postDecorator(super::withdraw, value, valuta);
+    }
+
+    private Account postDecorator(BiFunction<BigDecimal, LocalDateTime, Account> pPredecessor, BigDecimal value, LocalDateTime valuta) {
+        return new LowBalancePerBooking(
+                new Limited(pPredecessor, withdrawLimit).build(),
+                    threshold, fee).build()
                 .apply(value, valuta);
+    }
+
+    @Override
+    public Account deposit(BigDecimal value, LocalDateTime valuta) {
+        return postDecorator(super::deposit, value, valuta);
     }
 }
 

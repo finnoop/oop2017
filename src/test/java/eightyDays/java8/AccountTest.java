@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.math.BigDecimal;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class AccountTest {
 
@@ -37,19 +38,15 @@ public class AccountTest {
 
     @Test
     public void testCurrentWithdrawOverLimit() {
-        Current current = new Current(jeanPassepartout, BigDecimal.valueOf(100));
+        Current current = new Current(jeanPassepartout, BigDecimal.valueOf(100), BigDecimal.valueOf(1.5), BigDecimal.valueOf(40));
         assertEquals(BigDecimal.ZERO, current.getBalance());
-        assertEquals(BigDecimal.valueOf(12), current.deposit(BigDecimal.valueOf(12)).getBalance());
-        assertEquals(BigDecimal.valueOf(10), current.deposit(BigDecimal.valueOf(12)).withdraw(BigDecimal.valueOf(2)).getBalance());
-            /*
-    {
-        val current = account.Current(100) (1.5, 40)(jeanPassepartout)
-        assert (10.5 == = current.deposit(12).getBalance)
-        assert (intercept[RuntimeException] {
-        current.withdraw(400)
-    }.getMessage == = "Withdraw not allowed")
+        assertEquals(BigDecimal.valueOf(10.5), current.deposit(BigDecimal.valueOf(12)).getBalance());
+        assertEquals(BigDecimal.valueOf(7.0), current.deposit(BigDecimal.valueOf(12)).withdraw(BigDecimal.valueOf(2)).getBalance());
+        try {
+            current.withdraw(BigDecimal.valueOf(400));
+            fail("no exception thrown");
+        } catch (RuntimeException exception) {
+            assertEquals("Withdraw not allowed", exception.getMessage());
+        }
     }
-         */
-    }
-
 }

@@ -14,7 +14,7 @@ public class NoOverdraw {
         predecessor = pPredecessor;
     }
 
-    public BiFunction<BigDecimal, LocalDateTime, Account> apply(BigDecimal pBalance) {
+    public BiFunction<BigDecimal, LocalDateTime, Account> build(BigDecimal pBalance) {
         return (value, valuta) -> {
             if (pBalance.subtract(value).compareTo(BigDecimal.ZERO) < 0)
                 throw new RuntimeException("Withdraw not possible due to insufficient getBalance");

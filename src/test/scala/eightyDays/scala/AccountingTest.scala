@@ -28,6 +28,7 @@ class AccountingTest extends WordSpec {
     val current = account.Current(100)(1.5, 40)(jeanPassepartout)
     assert(0.0 === current.balance)
     assert(10.5 === current.deposit(12).balance)
+    assert(7.0 === current.deposit(12).withdraw(2).balance)
     assert(intercept[RuntimeException] {
       current.withdraw(400)
     }.getMessage === "Withdraw not allowed")

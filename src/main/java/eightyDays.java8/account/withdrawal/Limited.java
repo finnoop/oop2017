@@ -15,7 +15,7 @@ public class Limited {
         predecessor = pPredecessor;
     }
 
-    public BiFunction<BigDecimal, LocalDateTime, Account> apply() {
+    public BiFunction<BigDecimal, LocalDateTime, Account> build() {
         return (value, valuta) -> {
             if (value.compareTo(withdrawLimit) <= 0)
                 return predecessor.apply(value, valuta);
