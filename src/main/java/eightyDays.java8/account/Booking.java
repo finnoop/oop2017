@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Booking {
-    private final BigDecimal amount
+    private final BigDecimal amount;
     private final LocalDateTime valuta;
 
     public Booking(BigDecimal pAmount, LocalDateTime pValuta) {

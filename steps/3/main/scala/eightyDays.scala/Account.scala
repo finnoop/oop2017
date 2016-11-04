@@ -37,7 +37,7 @@ package account {
     protected[account] def post(value: Amount, valuta: LocalDateTime = LocalDateTime.now()) = factoryMethod(owner, Booking(value, valuta) +: bookings)
 
     override def toString: String =
-      s"${getClass.getSimpleName} number:${number.number} balance:$balance"
+      s"${getClass.getSimpleName} number:${number.number} getBalance:$balance"
   }
 
   package fee {
@@ -65,7 +65,7 @@ package account {
 
       override def withdraw(value: Amount, valuta: LocalDateTime): Account =
         if (balance - value < 0)
-          throw new RuntimeException("Withdraw not possible due to insufficient balance")
+          throw new RuntimeException("Withdraw not possible due to insufficient getBalance")
         else
           super.withdraw(value, valuta)
     }

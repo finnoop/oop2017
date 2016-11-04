@@ -50,7 +50,7 @@ package account {
       factoryMethod(owner, Booking(value, valuta) +: bookings)
 
     override def toString: String =
-      s"${getClass.getSimpleName} number:${number.number} balance:$balance"
+      s"${getClass.getSimpleName} number:${number.number} getBalance:$balance"
   }
 
   case class Booking(value: Amount,
@@ -108,7 +108,7 @@ package account {
                         valuta: java.time.LocalDateTime,
                         text: String): Account = {
         if (balance > feeFreeBalance)
-          super.post(value - fee, text = s"${text}, Including fee on balance")
+          super.post(value - fee, text = s"${text}, Including fee on getBalance")
         else super.post(value)
       }
     }

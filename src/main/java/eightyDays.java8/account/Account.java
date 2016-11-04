@@ -5,30 +5,70 @@ import eightyDays.java8.Partner;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.BiFunction;
 
-public class Account {
+public abstract class Account {
     public final Identification number = new Identification();
 
     private final Partner owner;
 
     private List<Booking> bookings;
 
-    public Account(Partner pOwner, List<Booking> pBookings) {
+    private BiFunction<Partner, List<Booking>, Account> factoryMethod;
+
+    public Account(Partner pOwner, List<Booking> pBookings, BiFunction<Partner, List<Booking>, Account> pFactoryMethod) {
         owner = pOwner;
         bookings = pBookings;
+        factoryMethod = pFactoryMethod;
     }
 
-    public BigDecimal balance() {
-        return BigDecimal.ONE;
+    public BigDecimal getBalance() {
+        return bookings.stream()
+                .map(booking -> booking.getAmount())
+                .reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
     }
 
     public Account withdraw(BigDecimal value, LocalDateTime valuta) {
-        return this;
+        if (value.compareTo(BigDecimal.ZERO) > 0)
+            return post(value.negate(), valuta);
+        else
+            throw new RuntimeException("Deposit of negative amount not allowed");
+    }
+
+    protected Account post(BigDecimal value, LocalDateTime valuta) {
+        return factoryMethod.apply(owner, new ArrayList<Booking>(bookings) {{
+            add(new Booking(value, valuta));
+        }});
+    }
+
+    public Account withdraw(BigDecimal value) {
+        return withdraw(value, LocalDateTime.now());
     }
 
     public Account deposit(BigDecimal value, LocalDateTime valuta) {
-        return this;
+        if (value.compareTo(BigDecimal.ZERO) > 0)
+            return post(value, valuta);
+        else
+            throw new RuntimeException("Deposit of negative amount not allowed");
+    }
+
+    public Account deposit(BigDecimal value) {
+        return deposit(value, LocalDateTime.now());
+    }
+
+    public Identification getNumber() {
+        return number;
+    }
+
+    public Partner getOwner() {
+        return owner;
+    }
+
+    public List<Booking> getBookings() {
+        return Collections.unmodifiableList(bookings);
     }
 
     @Override
@@ -36,7 +76,7 @@ public class Account {
         final StringBuilder sb = new StringBuilder("Account{");
         sb.append("class=").append(getClass().getSimpleName());
         sb.append(", number=").append(number);
-        sb.append(", balance=").append(balance());
+        sb.append(", getBalance=").append(getBalance());
         sb.append('}');
         return sb.toString();
     }

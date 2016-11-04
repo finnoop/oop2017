@@ -77,6 +77,6 @@ public class Account {
 
     @Override
     public String toString() {
-        return String.format("%s number:%s balance:%.2f", getClass().getSimpleName(), number.getNumber(), getBalance());
+        return String.format("%s number:%s getBalance:%.2f", getClass().getSimpleName(), number.getNumber(), getBalance());
     }
 }
