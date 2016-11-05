@@ -8,8 +8,8 @@ public class PersonTest {
     @Test
     public void testGetFirstName() throws Exception {
         Person out = new Person("name","firstName");
-        assertTrue(out.getFirstName() == "firstName");
-        assertTrue(out.getName() == "name");
+        assertEquals(out.getFirstName(), "firstName");
+        assertEquals(out.getName(), "name");
     }
 
     @Test
@@ -27,7 +27,7 @@ public class PersonTest {
         Person out = new Person("name","firstName");
         Person same = new Person("name","firstName");
         Person other = new Person("name","other");
-        assertTrue(out.hashCode() == same.hashCode());
-        assertFalse(out.hashCode() == other.hashCode());
+        assertEquals(out.hashCode(), same.hashCode());
+        assertNotEquals(out.hashCode(), other.hashCode());
     }
 }

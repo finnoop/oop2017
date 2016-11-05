@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class Bank {
     private final String name;
-    private HashMap<Identication, Partner> partners = new HashMap<>();
+    private HashMap<Identification, Partner> partners = new HashMap<>();
 
     public Bank(String pName) {
         name = pName;
@@ -15,7 +15,20 @@ public class Bank {
         return name;
     }
 
-    public Optional<Partner> getPartner(Identication id) {
+    public Optional<Partner> getPartner(Identification id) {
         return Optional.ofNullable(partners.get(id));
+    }
+
+    public Identification addPartner(Partner pPartner) {
+        return partners.entrySet().stream()
+                .filter(keyValue -> pPartner.equals(keyValue.getValue()))
+                .findFirst()
+                .map(keyValue -> keyValue.getKey())
+                .orElseGet(() -> {
+                            Identification newId = new Identification();
+                            partners.put(newId, pPartner);
+                            return newId;
+                        }
+                );
     }
 }

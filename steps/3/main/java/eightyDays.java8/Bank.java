@@ -18,4 +18,17 @@ public class Bank {
     public Optional<Partner> getPartner(Identification id) {
         return Optional.ofNullable(partners.get(id));
     }
+
+    public Identification addPartner(Partner pPartner) {
+        return partners.entrySet().stream()
+                .filter(keyValue -> pPartner.equals(keyValue.getValue()))
+                .findFirst()
+                .map(keyValue -> keyValue.getKey())
+                .orElseGet(() -> {
+                            Identification newId = new Identification();
+                            partners.put(newId, pPartner);
+                            return newId;
+                        }
+                );
+    }
 }
