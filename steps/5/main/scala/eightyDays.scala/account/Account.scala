@@ -27,6 +27,5 @@ abstract class Account(val owner: Partner,
 
   protected[account] def post(value: Amount, valuta: LocalDateTime) = factoryMethod(owner, Booking(value, valuta) +: bookings)
 
-  override def toString: String =
-    s"${getClass.getSimpleName} number:${number.number} getBalance:$balance"
+  override def toString: String = s"${getClass.getSimpleName} number:${number.number} getBalance:$balance"
 }
