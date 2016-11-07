@@ -105,3 +105,9 @@ http://alvinalexander.com/scala/how-scala-killed-oop-strategy-design-pattern
 - null is böse! if (value != null & value ....) =>> es gibt option, die das if unnötig macht. Das gleiche mit leeren Collection. Manchmal hat null auch eine implizite Semantik
 - Nesting von Funktionen und anderen Sachen ist wichtig!!
 - we are to busy um etwas neues zu lernen
+
+Ueber Bank buchen, da das Account sich verändert.
+
+Fragen stellen wie: wievielte Kunden haben ein Guthaben von mehr als 1000 (wobei ein Kunde mehrere Kontos haben kann).
+
+Essenz: Java ist mutable der Default, bei Scala Immutable. Collection Framework von Java geht von Mutable aus und es ist eher mühsam mit immutable zu arbeiten (ein Element mit einem Fluent Interface hinzufügen).
