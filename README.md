@@ -75,7 +75,7 @@ http://alvinalexander.com/scala/how-scala-killed-oop-strategy-design-pattern
 - Implicit conversion
   * Kann zu magic führen
 - {} kann fast überall anstelle von was anderem stehen z.B. Bei getOrElese bei Option
-- Monads mit Option und Try (mehere withdraws
+- Monads mit Option und Try (mehere withdraws)
 - Pattern Matching
 - Traits
   * (Self types)
@@ -92,8 +92,6 @@ http://alvinalexander.com/scala/how-scala-killed-oop-strategy-design-pattern
 - Besser lesbar, da es viel dichter ist. Keine/wenig Zeremonie im Vergleich zu Java
   * For comprehension vs map/flatMap (readability)
   * Balance zwischen Lesbarkeit und Sprach-Möglichkeiten und Kompaktheit finden
-
-
   
 - Fuer Scala muss man nicht alles schon verstanden haben, der Einstieg ist sehr einfach.
   * Scala bring viele neue (einfache) Möglichkeiten
