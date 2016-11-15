@@ -36,28 +36,24 @@ case class Bank(name: String) {
 
   def withdraw(account: Identification, value: Amount, valuta: LocalDateTime = LocalDateTime.now()) = post(account, _.withdraw(value, valuta))
 
-  def assets(owner: Identification) = accounts.filter(_._2.owner == owner)
+  def assets(owner: Identification) = accounts
+    .filter(_._2.owner == owner)
     .map(_._2.balance)
     .sum
 
-  protected def partner(predicate: Partner => Boolean) = partners.filter(predicate(_)).keys
+  protected def partner(predicate: Partner => Boolean) = partners.filter(entry => predicate(entry._2)).keys
 
-  def searchPartner(name:String) = partner(_.name == name)
+  def searchPartner(name: String) = partner(_.name == name)
 
-  def searchPerson(firstName:String) = partner(_ match {
-    case Person(`firstName`,_) => true
+  def searchPerson(firstName: String) = partner(_ match {
+    case Person(`firstName`, _) => true
     case _ => false
   })
 
   // remove later
-  def abc = {
-    val aid = accounts.map(_._2.owner).toSet.intersect(partners.keySet)
-    val ba = aid.map { owner => owner -> assets(owner) }
-    val gr = ba.groupBy(_._2 match {
-      case asset if asset > 1000 => "A"
-      case asset if asset > 500 => "B"
-      case _ => "C"
-    })
-    gr
-  }
+  def abc = accounts.map(_._2.owner).toSet.intersect(partners.keySet).map { owner => owner -> assets(owner) }.groupBy(_._2 match {
+    case asset if asset > 1000 => "A"
+    case asset if asset > 500 => "B"
+    case _ => "C"
+  })
 }

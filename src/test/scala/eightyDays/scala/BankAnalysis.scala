@@ -2,6 +2,7 @@ package eightyDays.scala
 
 import org.scalatest.WordSpec
 
+// remove later
 class BankAnalysis extends WordSpec {
   "A bank" when {
     "with lots of customers" should {
