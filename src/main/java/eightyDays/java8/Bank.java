@@ -1,11 +1,19 @@
 package eightyDays.java8;
 
+import eightyDays.java8.account.Account;
+import eightyDays.java8.account.Current;
+
 import java.util.HashMap;
+import java.util.IdentityHashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class Bank {
     private final String name;
-    private HashMap<Identification, Partner> partners = new HashMap<>();
+    private Map<Identification, Partner> partners = new HashMap<>();
+    private Map<Identification, Account> accounts = new HashMap<>();
 
     public Bank(String pName) {
         name = pName;
@@ -31,5 +39,11 @@ public class Bank {
                     partners.put(newId, pPartner);
                     return  newId;
                 });
+    }
+
+    public Identification openAccount(Identification pOwner, Function<Identification, Account> pFactoryMethod) {
+        Account account = pFactoryMethod.apply(pOwner);
+        accounts.put(account.getNumber(), account);
+        return account.getNumber();
     }
 }

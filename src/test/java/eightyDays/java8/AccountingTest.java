@@ -11,8 +11,8 @@ import static org.junit.Assert.fail;
 
 public class AccountingTest {
 
-    private static final Person phileasFogg = new Person("Phileas", "Fogg");
-    private static final Person jeanPassepartout = new Person("Jean", "Passepartout");
+    private static final Identification phileasFogg = new Identification();
+    private static final Identification jeanPassepartout = new Identification();
 
     @Test
     public void testSavingAccount() {
