@@ -9,22 +9,23 @@ import static org.junit.Assert.*;
 public class BankTest {
     @Test
     public void getName() throws Exception {
-        Bank out = new Bank("TestBank");
-        assertEquals("TestBank", out.getName());
+        Bank testee = new Bank("TestBank");
+        assertEquals("TestBank", testee.getName());
     }
 
     @Test
     public void getPartner() throws Exception {
-        Bank out = new Bank("TestBank");
-        assertEquals(Optional.empty(), out.getPartner(new Identification()));
+        Bank testee = new Bank("TestBank");
+        assertEquals(Optional.empty(), testee.getPartner(new Identification()));
     }
 
     @Test
-    public void addPartner() throws Exception {
-        Bank out = new Bank("TestBank");
-        Partner fogg = new Person("Phileas", "Fogg");
-        Identification phileas = out.addPartner(fogg);
-        assertEquals(Optional.of(fogg), out.getPartner(phileas));
-        assertEquals(phileas, out.addPartner(fogg));
+    public void testAddCustomer() {
+        Bank testee = new Bank("TestBank");
+        Person fogg = new Person("Phileas", "Fogg");
+
+        Identification phileas = testee.addPartner(fogg);
+        assertEquals(Optional.of(fogg), testee.getPartner(phileas));
+        assertEquals(phileas, testee.addPartner(fogg));
     }
 }
