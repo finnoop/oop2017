@@ -46,7 +46,7 @@ case class Bank(name: String) {
   def searchPartner(name: String) = partner(_.name == name)
 
   def searchPerson(firstName: String) = partner(_ match {
-    case Person(`firstName`, _) => true
+    case Person(_, `firstName`) => true
     case _ => false
   })
 }

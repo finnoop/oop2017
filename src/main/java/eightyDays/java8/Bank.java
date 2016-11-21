@@ -6,13 +6,13 @@ import jdk.nashorn.internal.objects.AccessorPropertyDescriptor;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.IdentityHashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Bank {
     private final String name;
@@ -63,7 +63,7 @@ public class Bank {
     }
 
     public Account deposit(Identification pId, BigDecimal pValue, LocalDateTime pValuta) {
-        return post(pId, account -> account.deposit(pValue,pValuta));
+        return post(pId, account -> account.deposit(pValue, pValuta));
     }
 
     public Account withdraw(Identification pId, BigDecimal pValue) {
@@ -83,5 +83,26 @@ public class Bank {
                 .filter(entry -> entry.getValue().getOwner().equals(pOwner))
                 .map(entry -> entry.getValue().getBalance())
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    protected Set<Partner> getPartner(Predicate<Partner> predicate) {
+        return partners.entrySet().stream()
+                .filter(entry -> predicate.test(entry.getValue()))
+                .map(entry -> entry.getValue())
+                .collect(Collectors.toSet());
+    }
+
+    public Set<Partner> searchPartner(String pName) {
+        return getPartner(partner -> partner.getName().equals(pName));
+    }
+
+    public Set<Partner> searchPerson(String pFirstname) {
+        return getPartner(partner -> {
+            if (partner instanceof Person) {
+                return ((Person)partner).getFirstName().equals(pFirstname);
+            } else {
+                return false;
+            }
+        });
     }
 }
