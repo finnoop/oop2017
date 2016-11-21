@@ -9,13 +9,13 @@ import static org.junit.Assert.*;
 public class BankTest {
     @Test
     public void getName() throws Exception {
-        Bank out = new Bank("TestBank");
-        assertEquals("TestBank", out.getName());
+        Bank testee = new Bank("TestBank");
+        assertEquals("TestBank", testee.getName());
     }
 
     @Test
     public void getPartner() throws Exception {
-        Bank out = new Bank("TestBank");
-        assertEquals(Optional.empty(), out.getPartner(new Identification()));
+        Bank testee = new Bank("TestBank");
+        assertEquals(Optional.empty(), testee.getPartner(new Identification()));
     }
 }

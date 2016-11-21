@@ -1,6 +1,5 @@
 package eightyDays.scala
 
-case class Identification() {
-  import java.util.UUID
-  val number = UUID.randomUUID()
-}
+import java.util.UUID
+
+case class Identification(number:UUID = UUID.randomUUID())

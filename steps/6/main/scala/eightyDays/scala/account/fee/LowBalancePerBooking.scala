@@ -8,13 +8,13 @@ trait LowBalancePerBooking extends Account {
 
   val threshold: Amount
 
-  private[this] def feeIfPoossible(account: Account, valuta: LocalDateTime) =
+  private[this] def feeIfPossible(account: Account, valuta: LocalDateTime) =
     if (account.balance < threshold)
       account.post(-fee, valuta)
     else
       account
 
-  override def withdraw(value: Amount, valuta: LocalDateTime): Account = feeIfPoossible(super.withdraw(value, valuta), valuta)
+  override def withdraw(value: Amount, valuta: LocalDateTime): Account = feeIfPossible(super.withdraw(value, valuta), valuta)
 
-  override def deposit(value: Amount, valuta: LocalDateTime): Account = feeIfPoossible(super.deposit(value, valuta), valuta)
+  override def deposit(value: Amount, valuta: LocalDateTime): Account = feeIfPossible(super.deposit(value, valuta), valuta)
 }

@@ -3,9 +3,9 @@ package eightyDays.scala.account
 import eightyDays.scala.{Identification, Partner}
 import scala.language.implicitConversions
 
-abstract class Account(val owner: Partner,
+abstract class Account(val owner: Identification,
                        val bookings: Seq[Booking],
-                       factoryMethod: ((Partner, Seq[Booking]) => Account)) {
+                       factoryMethod: ((Identification, Seq[Booking]) => Account)) {
 
   val number = Identification()
 
