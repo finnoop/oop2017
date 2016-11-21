@@ -7,21 +7,21 @@ class BankTest extends WordSpec {
 
   "A new bank" must have {
     "a given name" in {
-      val out = Bank("Test bank")
-      assert(out.name === "Test bank")
+      val testee = Bank("Test bank")
+      assert(testee.name === "Test bank")
     }
     "now partners" in {
-      val out = Bank("Test bank")
-      assert(None === out.partner(Identification()))
+      val testee = Bank("Test bank")
+      assert(None === testee.partner(Identification()))
     }
     "one customer after adding one" in {
-      val out = Bank("Test bank")
+      val testee = Bank("Test bank")
       val fogg = Person("Phileas", "Fogg")
 
-      val phileas = out.addPartner(fogg)
+      val phileas = testee.addPartner(fogg)
 
-      assert(Some(fogg) === out.partner(phileas))
-      assert(phileas === out.addPartner(fogg))
+      assert(Some(fogg) === testee.partner(phileas))
+      assert(phileas === testee.addPartner(fogg))
     }
   }
 }

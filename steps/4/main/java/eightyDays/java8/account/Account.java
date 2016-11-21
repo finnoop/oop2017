@@ -1,7 +1,6 @@
 package eightyDays.java8.account;
 
 import eightyDays.java8.Identification;
-import eightyDays.java8.Partner;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -13,13 +12,13 @@ import java.util.function.BiFunction;
 public abstract class Account {
     public final Identification number = new Identification();
 
-    private final Partner owner;
+    private final Identification owner;
 
     private final List<Booking> bookings;
 
-    private BiFunction<Partner, List<Booking>, Account> factoryMethod;
+    private BiFunction<Identification, List<Booking>, Account> factoryMethod;
 
-    public Account(Partner pOwner, List<Booking> pBookings, BiFunction<Partner, List<Booking>, Account> pFactoryMethod) {
+    public Account(Identification pOwner, List<Booking> pBookings, BiFunction<Identification, List<Booking>, Account> pFactoryMethod) {
         owner = pOwner;
         bookings = pBookings;
         factoryMethod = pFactoryMethod;
@@ -63,7 +62,7 @@ public abstract class Account {
         return number;
     }
 
-    public Partner getOwner() {
+    public Identification getOwner() {
         return owner;
     }
 
