@@ -85,18 +85,18 @@ public class Bank {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    protected Set<Partner> getPartner(Predicate<Partner> predicate) {
+    protected Set<Identification> getPartner(Predicate<Partner> predicate) {
         return partners.entrySet().stream()
                 .filter(entry -> predicate.test(entry.getValue()))
-                .map(entry -> entry.getValue())
+                .map(entry -> entry.getKey())
                 .collect(Collectors.toSet());
     }
 
-    public Set<Partner> searchPartner(String pName) {
+    public Set<Identification> searchPartner(String pName) {
         return getPartner(partner -> partner.getName().equals(pName));
     }
 
-    public Set<Partner> searchPerson(String pFirstname) {
+    public Set<Identification> searchPerson(String pFirstname) {
         return getPartner(partner -> {
             if (partner instanceof Person) {
                 return ((Person)partner).getFirstName().equals(pFirstname);

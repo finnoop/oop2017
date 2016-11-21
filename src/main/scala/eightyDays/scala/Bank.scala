@@ -41,7 +41,7 @@ case class Bank(name: String) {
     .map(_._2.balance)
     .sum
 
-  protected def partner(predicate: Partner => Boolean) = partners.filter(entry => predicate(entry._2)).keys
+  def partner(predicate: Partner => Boolean) = partners.filter(entry => predicate(entry._2)).keys
 
   def searchPartner(name: String) = partner(_.name == name)
 
