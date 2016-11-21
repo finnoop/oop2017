@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class IdenticationTest {
+public class IdentificationTest {
     @Test
     public void testGetNumber() throws Exception {
         Identification out = new Identification();
