@@ -13,12 +13,10 @@ public class BankSearchTest {
         Person fogg = new Person("Fogg", "Phileas");
         Person passepartout = new Person("Passepartout", "Jean");
         LegalEntity finnovaLegalEntity = new LegalEntity("Finnova", "AG");
-        LegalEntity netsLegalEntity = new LegalEntity("Nets", "GmbH");
 
         Identification phileas = testee.addPartner(fogg);
         Identification jean = testee.addPartner(passepartout);
         Identification finnova = testee.addPartner(finnovaLegalEntity);
-        Identification nets = testee.addPartner(netsLegalEntity);
 
         assertFalse(testee.searchPerson("Jean").isEmpty());
         assertEquals(1, testee.searchPerson("Jean").size());

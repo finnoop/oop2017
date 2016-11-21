@@ -9,12 +9,10 @@ class BankSearchTest extends WordSpec {
       val fogg = Person("Fogg", "Phileas")
       val passepartout = Person("Passepartout", "Jean")
       val finnovaLeagEntity = LegalEntity("Finnova", "AG")
-      val netsLeagEntity = LegalEntity("Nets", "GmbH")
 
       val phileas = testee.addPartner(fogg)
       val jean = testee.addPartner(passepartout)
       val finnova = testee.addPartner(finnovaLeagEntity)
-      val nets = testee.addPartner(netsLeagEntity)
 
       assert(testee.searchPerson("Jean").nonEmpty)
       assert(testee.searchPerson("Jean").size === 1)
