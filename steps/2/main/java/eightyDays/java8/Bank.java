@@ -1,11 +1,12 @@
 package eightyDays.java8;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 public class Bank {
     private final String name;
-    private HashMap<Identification, Partner> partners = new HashMap<>();
+    private Map<Identification, Partner> partners = new HashMap<>();
 
     public Bank(String pName) {
         name = pName;
@@ -20,15 +21,16 @@ public class Bank {
     }
 
     public Identification addPartner(Partner pPartner) {
-        return partners.entrySet().stream()
-                .filter(keyValue -> pPartner.equals(keyValue.getValue()))
+        return partners
+                .entrySet()
+                .stream()
+                .filter(entry -> entry.getValue().equals(pPartner))
                 .findFirst()
-                .map(keyValue -> keyValue.getKey())
+                .map(entry -> entry.getKey())
                 .orElseGet(() -> {
-                            Identification newId = new Identification();
-                            partners.put(newId, pPartner);
-                            return newId;
-                        }
-                );
+                    Identification newId = new Identification();
+                    partners.put(newId, pPartner);
+                    return newId;
+                });
     }
 }
