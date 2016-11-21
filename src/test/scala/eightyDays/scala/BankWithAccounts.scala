@@ -6,7 +6,7 @@ class BankWithAccounts extends WordSpec {
   "A bank" when {
     "a customer with an account" should {
       "can deposit and withdraw money" in {
-        implicit val testee = Bank("Test bank")
+        val testee = Bank("Test bank")
         val phileas = testee.addPartner(Person("Phileas", "Fogg"))
         val current = testee.openAccount(phileas, account.Current(100)(1.5, 40))
         assert(10.5 === testee.deposit(current.number, 12).balance)
@@ -17,7 +17,7 @@ class BankWithAccounts extends WordSpec {
   }
   "A customer" when {
     "has multiple account from different banks" in {
-      implicit val testee = Bank("Test bank")
+      val testee = Bank("Test bank")
       val phileas = testee.addPartner(Person("Phileas", "Fogg"))
       val current = testee.openAccount(phileas, account.Current(100)(1.5, 40))
       val saving = testee.openAccount(phileas, account.Saving(100))

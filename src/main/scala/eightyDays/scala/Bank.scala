@@ -49,11 +49,4 @@ case class Bank(name: String) {
     case Person(`firstName`, _) => true
     case _ => false
   })
-
-  // remove later
-  def abc = accounts.map(_._2.owner).toSet.intersect(partners.keySet).map { owner => owner -> assets(owner) }.groupBy(_._2 match {
-    case asset if asset > 1000 => "A"
-    case asset if asset > 500 => "B"
-    case _ => "C"
-  })
 }

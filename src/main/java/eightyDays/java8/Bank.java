@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.stream.Collector;
 
 public class Bank {
     private final String name;
@@ -75,5 +76,12 @@ public class Bank {
 
     public Optional<Account> getAccount(Identification pId) {
         return Optional.ofNullable(accounts.get(pId));
+    }
+
+    public BigDecimal getAssets(Identification pOwner) {
+        return accounts.entrySet().stream()
+                .filter(entry -> entry.getValue().getOwner().equals(pOwner))
+                .map(entry -> entry.getValue().getBalance())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
