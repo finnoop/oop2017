@@ -16,12 +16,10 @@ public class BankWithAccounts {
         Bank testee = new Bank("TestBank");
         Identification phileas = testee.addPartner(new Person("Phileas", "Fogg"));
 
-        Identification current = testee.openAccount(phileas, (owner) -> new Current(BigDecimal.valueOf(100), BigDecimal.valueOf(1.5), BigDecimal.valueOf(40), owner));
+        Account current = testee.openAccount(phileas, (owner) -> new Current(BigDecimal.valueOf(100), BigDecimal.valueOf(1.5), BigDecimal.valueOf(40), owner));
 
+        assertEquals(BigDecimal.valueOf(10.5), testee.deposit(current.getNumber(), BigDecimal.valueOf(12)).getBalance());
+        assertEquals(BigDecimal.valueOf(10.5), testee.getAccount(current.getNumber()).get().getBalance());
+        assertEquals(BigDecimal.valueOf(8.0), testee.withdraw(current.getNumber(), BigDecimal.valueOf(1)).getBalance());
     }
-    /*
-                assert(10.5 === testee.deposit(current.number, 12).balance)
-                assert(10.5 === testee.account(current.number).get.balance)
-                assert(8.0 === testee.withdraw(current.number, 1).balance)
-*/
 }
