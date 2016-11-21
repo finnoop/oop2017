@@ -18,4 +18,14 @@ public class BankTest {
         Bank testee = new Bank("TestBank");
         assertEquals(Optional.empty(), testee.getPartner(new Identification()));
     }
+
+    @Test
+    public void testAddCustomer() {
+        Bank testee = new Bank("TestBank");
+        Person fogg = new Person("Phileas", "Fogg");
+
+        Identification phileas = testee.addPartner(fogg);
+        assertEquals(Optional.of(fogg), testee.getPartner(phileas));
+        assertEquals(phileas, testee.addPartner(fogg));
+    }
 }
