@@ -1,6 +1,6 @@
 package eightyDays.java8.account;
 
-import eightyDays.java8.Identification;
+import eightyDays.java8.Partner;
 import eightyDays.java8.account.fee.LowBalancePerBooking;
 import eightyDays.java8.account.withdrawal.Limited;
 
@@ -15,11 +15,11 @@ public class Current extends Account {
     private final BigDecimal threshold;
     private final BigDecimal fee;
 
-    public Current(BigDecimal pWithdrawLimit, BigDecimal pFee, BigDecimal pThreshold, Identification pOwner) {
+    public Current(BigDecimal pWithdrawLimit, BigDecimal pFee, BigDecimal pThreshold, Partner pOwner) {
         this(pOwner, new ArrayList<>(), pWithdrawLimit, pFee, pThreshold);
     }
 
-    public Current(Identification pOwner, List<Booking> pBookings, BigDecimal pWithdrawLimit, BigDecimal pFee, BigDecimal pThreshold) {
+    public Current(Partner pOwner, List<Booking> pBookings, BigDecimal pWithdrawLimit, BigDecimal pFee, BigDecimal pThreshold) {
         super(pOwner, pBookings, (owner, bookings) -> new Current(owner, bookings, pWithdrawLimit, pFee, pThreshold));
         withdrawLimit = pWithdrawLimit;
         threshold = pThreshold;

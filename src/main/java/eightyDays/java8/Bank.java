@@ -1,12 +1,11 @@
 package eightyDays.java8;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 public class Bank {
     private final String name;
-    private Map<Identification, Partner> partners = new HashMap<>();
+    private HashMap<Identification, Partner> partners = new HashMap<>();
 
     public Bank(String pName) {
         name = pName;

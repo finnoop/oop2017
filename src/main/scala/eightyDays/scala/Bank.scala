@@ -10,7 +10,7 @@ case class Bank(name: String) {
                                         .map(_._1)
                                         .getOrElse {
                                           val newId = Identification()
-                                          partners = partners + (newId -> pPartner)
+                                          partners += (newId -> pPartner)
                                           newId
                                         }
 }

@@ -1,6 +1,6 @@
 package eightyDays.java8.account;
 
-import eightyDays.java8.Partner;
+import eightyDays.java8.Identification;
 import eightyDays.java8.account.withdrawal.Limited;
 import eightyDays.java8.account.withdrawal.NoOverdraw;
 
@@ -12,11 +12,11 @@ import java.util.List;
 public class Saving extends Account {
     private final BigDecimal withdrawLimit;
 
-    public Saving(BigDecimal pWithdrawLimit, Partner pOwner) {
+    public Saving(BigDecimal pWithdrawLimit, Identification pOwner) {
         this(pOwner, new ArrayList<>(), pWithdrawLimit);
     }
 
-    public Saving(Partner pOwner, List<Booking> pBookings, BigDecimal pWithdrawLimit) {
+    public Saving(Identification pOwner, List<Booking> pBookings, BigDecimal pWithdrawLimit) {
         super(pOwner, pBookings, (owner, bookings) -> new Saving(owner, bookings, pWithdrawLimit));
         withdrawLimit = pWithdrawLimit;
     }
