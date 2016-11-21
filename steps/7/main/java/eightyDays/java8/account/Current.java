@@ -1,7 +1,6 @@
 package eightyDays.java8.account;
 
 import eightyDays.java8.Identification;
-import eightyDays.java8.Partner;
 import eightyDays.java8.account.fee.LowBalancePerBooking;
 import eightyDays.java8.account.withdrawal.Limited;
 
