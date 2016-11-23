@@ -29,10 +29,10 @@ public class AccountingTest {
         assertEquals(BigDecimal.valueOf(400),saving.deposit(BigDecimal.valueOf(400)).getBalance());
         assertEquals(BigDecimal.valueOf(100), saving.deposit(BigDecimal.valueOf(400)).withdraw(BigDecimal.valueOf(300)).getBalance());
         try {
-            saving.deposit(BigDecimal.valueOf(400)).withdraw(BigDecimal.valueOf(400));
+            saving.deposit(BigDecimal.valueOf(400)).withdraw(BigDecimal.valueOf(401));
             fail("no exception thrown");
         } catch (RuntimeException exception) {
-            assertEquals("Withdraw not allowed", exception.getMessage());
+            assertEquals("Withdraw not possible due to insufficient getBalance", exception.getMessage());
         }
     }
 
