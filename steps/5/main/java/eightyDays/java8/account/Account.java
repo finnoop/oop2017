@@ -26,8 +26,8 @@ public abstract class Account {
 
     public BigDecimal getBalance() {
         return bookings.stream()
-                .map(booking -> booking.getAmount())
-                .reduce(BigDecimal.ZERO, (a, b) -> a.add(b));
+                .map(Booking::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public Account withdraw(BigDecimal value, LocalDateTime valuta) {

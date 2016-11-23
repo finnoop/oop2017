@@ -26,7 +26,7 @@ public class Bank {
                 .stream()
                 .filter(entry -> entry.getValue().equals(pPartner))
                 .findFirst()
-                .map(entry -> entry.getKey())
+                .map(Map.Entry::getKey)
                 .orElseGet(() -> {
                     Identification newId = new Identification();
                     partners.put(newId, pPartner);
