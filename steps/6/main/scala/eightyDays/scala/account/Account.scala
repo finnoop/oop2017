@@ -1,13 +1,12 @@
 package eightyDays.scala.account
 
-import eightyDays.scala.{Identification, Partner}
+import java.util.UUID
+
 import scala.language.implicitConversions
 
-abstract class Account(val owner: Identification,
+abstract class Account(val owner: UUID,
                        val bookings: Seq[Booking],
-                       factoryMethod: ((Identification, Seq[Booking]) => Account)) {
-
-  val number = Identification()
+                       factoryMethod: ((UUID, Seq[Booking]) => Account)) {
 
   def balance: Amount = bookings.foldLeft(0: Amount)((balance, booking) => balance + booking)
 
@@ -26,6 +25,4 @@ abstract class Account(val owner: Identification,
       throw new RuntimeException("Deposit of negative amount not allowed")
 
   protected[account] def post(value: Amount, valuta: LocalDateTime) = factoryMethod(owner, Booking(value, valuta) +: bookings)
-
-  override def toString: String = s"${getClass.getSimpleName} number:${number.number} getBalance:$balance"
 }

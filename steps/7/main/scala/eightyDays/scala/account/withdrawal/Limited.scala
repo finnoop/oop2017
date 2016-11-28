@@ -10,5 +10,5 @@ trait Limited extends Account {
     if (value <= withdrawLimit)
       super.withdraw(value, valuta)
     else
-      throw new RuntimeException("Withdraw not allowed")
+      throw new RuntimeException("Value over withdraw limit")
 }
