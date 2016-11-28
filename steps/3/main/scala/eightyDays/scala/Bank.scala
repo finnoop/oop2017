@@ -1,16 +1,18 @@
 package eightyDays.scala
 
-case class Bank(name: String) {
-  private[this] var partners = Map[Identification, Partner]()
+import java.util.UUID
 
-  def partner(id: Identification) = partners get id
+class Bank(val name: String) {
+  var persons = Map[UUID, Person]()
 
-  def addPartner(pPartner: Partner) = partners
-                                        .find(_._2 == pPartner)
-                                        .map(_._1)
-                                        .getOrElse {
-                                          val newId = Identification()
-                                          partners = partners + (newId -> pPartner)
-                                          newId
-                                        }
+  def addPartner(pPerson: Person) = persons
+    .find(_._2 == pPerson)
+    .map(_._1)
+    .getOrElse {
+      val newID = UUID.randomUUID()
+      persons = persons + (newID -> pPerson)
+      newID
+    }
+
+  def person(pId: UUID) = persons get pId
 }
