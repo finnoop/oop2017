@@ -1,7 +1,7 @@
 package eightyDays.java;
 
-import eightDays.java.account.Current;
-import eightDays.java.account.Saving;
+import eightyDays.java.account.Current;
+import eightyDays.java.account.Saving;
 import org.junit.Test;
 
 import java.math.BigDecimal;

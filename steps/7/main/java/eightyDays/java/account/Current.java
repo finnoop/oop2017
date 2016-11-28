@@ -1,7 +1,7 @@
 package eightyDays.java.account;
 
-import eightDays.java.account.fee.LowBalancePerBooking;
-import eightDays.java.account.withdrawal.Limited;
+import eightyDays.java.account.fee.LowBalancePerBooking;
+import eightyDays.java.account.withdrawal.Limited;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

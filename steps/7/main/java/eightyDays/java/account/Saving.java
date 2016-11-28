@@ -1,7 +1,7 @@
 package eightyDays.java.account;
 
-import eightDays.java.account.withdrawal.Limited;
-import eightDays.java.account.withdrawal.NoOverdraw;
+import eightyDays.java.account.withdrawal.Limited;
+import eightyDays.java.account.withdrawal.NoOverdraw;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

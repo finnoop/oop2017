@@ -1,6 +1,6 @@
 package eightyDays.java.account;
 
-import eightDays.java.account.withdrawal.WithdrawUtil;
+import eightyDays.java.account.withdrawal.WithdrawUtil;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

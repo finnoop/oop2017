@@ -1,6 +1,6 @@
 package eightyDays.java.account.fee;
 
-import eightDays.java.account.Booking;
+import eightyDays.java.account.Booking;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
