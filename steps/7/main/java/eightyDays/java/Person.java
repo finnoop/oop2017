@@ -1,8 +1,8 @@
 package eightyDays.java;
 
 public class Person {
-    private String name;
-    private String firstName;
+    private final String name;
+    private final String firstName;
 
     @Override
     public boolean equals(Object pO) {
@@ -28,16 +28,8 @@ public class Person {
         return name;
     }
 
-    public void setName(String pName) {
-        name = pName;
-    }
-
     public String getFirstName() {
         return firstName;
-    }
-
-    public void setFirstName(String pFirstName) {
-        firstName = pFirstName;
     }
 
     public Person(String pName, String pFirstName) {
