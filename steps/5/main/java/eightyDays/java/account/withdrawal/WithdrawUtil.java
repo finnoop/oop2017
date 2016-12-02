@@ -10,7 +10,7 @@ public class WithdrawUtil {
         }
     }
 
-    public static void noWithdraw(BigDecimal pBalance,  BigDecimal pValue) {
+    public static void noOverdraw(BigDecimal pBalance, BigDecimal pValue) {
         if (pBalance.add(pValue).compareTo(BigDecimal.ZERO) < 0) {
             throw new RuntimeException("Withdraw not possible due to insufficient getBalance");
         }

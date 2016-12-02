@@ -23,7 +23,7 @@ public class Saving extends Account {
 
     @Override
     public Account post(BigDecimal pValue, LocalDateTime pValuta) {
-        WithdrawUtil.noWithdraw(getBalance(), pValue);
+        WithdrawUtil.noOverdraw(getBalance(), pValue);
         WithdrawUtil.limited(withdrawLimit, pValue);
         return new Saving(withdrawLimit, getOwner(), new ArrayList<Booking>(bookings) {{
             add(new Booking(pValue, pValuta));
