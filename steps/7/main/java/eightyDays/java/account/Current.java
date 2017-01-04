@@ -9,11 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class Current extends Account {
-    private final BigDecimal withdrawLimit;
-    private final BigDecimal threshold;
-    private final BigDecimal fee;
+    private final Function<BiFunction<BigDecimal, LocalDateTime, Account>, BiFunction<BigDecimal, LocalDateTime, Account>> postFunction;
 
     public Current(BigDecimal pWithdrawLimit, BigDecimal pFee, BigDecimal pThreshold, UUID pOwner) {
         this(pOwner, new ArrayList<>(), pWithdrawLimit, pFee, pThreshold);
@@ -21,26 +20,20 @@ public class Current extends Account {
 
     public Current(UUID pOwner, List<Booking> pBookings, BigDecimal pWithdrawLimit, BigDecimal pFee, BigDecimal pThreshold) {
         super(pOwner, pBookings, (owner, bookings) -> new Current(owner, bookings, pWithdrawLimit, pFee, pThreshold));
-        withdrawLimit = pWithdrawLimit;
-        threshold = pThreshold;
-        fee = pFee;
+        postFunction = (superFunction) -> new LowBalancePerBooking(
+                                                new Limited(
+                                                        superFunction, pWithdrawLimit
+                                                ).build(),
+                                          pThreshold, pFee).build();
     }
 
     @Override
     public Account withdraw(BigDecimal value, LocalDateTime valuta) {
-        return postDecorator(super::withdraw, value, valuta);
+        return postFunction.apply(super::withdraw).apply(value, valuta);
     }
 
     @Override
     public Account deposit(BigDecimal value, LocalDateTime valuta) {
-        return postDecorator(super::deposit, value, valuta);
-    }
-
-    private Account postDecorator(BiFunction<BigDecimal, LocalDateTime, Account> pPredecessor, BigDecimal value, LocalDateTime valuta) {
-        return new LowBalancePerBooking(
-                new Limited(pPredecessor, withdrawLimit).build(),
-                    threshold, fee).build()
-                .apply(value, valuta);
+        return postFunction.apply(super::deposit).apply(value, valuta);
     }
 }
-
